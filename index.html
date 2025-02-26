@@ -25,9 +25,10 @@
                 <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">Transaction</a>
                 <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">Logout</a>
             </nav>
-    
+
             <button class="button bg-gray-200 w-10 h-5 rounded-full relative">
-                <div class="btn-circle h-5 w-5 border rounded-full bg-[#2A9D8F] left-0absolute transition-transform"></div>
+                <div class="btn-circle h-5 w-5 border rounded-full bg-[#2A9D8F] left-0absolute transition-transform">
+                </div>
             </button>
         </div>
     </header>
@@ -36,17 +37,18 @@
         <div class="bg-white shadow-lg rounded-2xl p-8 w-[90%] max-w-lg text-center">
             <h1 class="text-2xl font-bold text-[#264653]">Welcome to MoneyMate</h1>
             <p class="text-gray-600 mt-2">Track your expenses easily</p>
-            
+
             <div class="mt-4">
                 <button class="bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-[#21867A]">Add Expense</button>
                 <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg hover:bg-[#D4A74F]">View Reports</button>
             </div>
-            
-            <div class="mt-6">
+
+            <div class="mt-6 ">
                 <label class="text-gray-700">Wallet Balance :</label>
                 <input type="number" class=" wallet border border-gray-300 rounded-md p-2 w-full mt-2">
+                <p class="error-msg text-red-600 flex ml-2 "></p>
             </div>
-    
+
             <div class="flex justify-between items-center mt-6">
                 <div>
                     <h2 class="text-lg font-semibold">Available Balance</h2>
@@ -59,8 +61,8 @@
             </div>
         </div>
     </main>
-    
-<script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
