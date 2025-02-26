@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="src/output.css">
 </head>
 
-<body>
+<body class="relative">
     <header class="text-white body-font bg-[#264653]">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -33,6 +33,19 @@
         </div>
     </header>
 
+    <div class="flex justify-center items-center add-form border border-e-red-700 absolute bg-blue-400 z-10">
+        <form action="" class="flex flex-col">
+            <label for="title">title<span class="text-red-600">*</span></label>
+            <input type="text" required>
+            <label for="number">spend amount<span class="text-red-600">*</span></label>
+            <input type="text">
+            <label for="title">Catagory</label>
+            <input type="text">
+            <label for="date">date</label>
+            <input type="date">
+            <button>Save</button>
+        </form>
+    </div>
     <main class="flex items-center justify-center min-h-[80vh] bg-[#F4F4F4]">
         <div class="bg-white shadow-lg rounded-2xl p-8 w-[90%] max-w-lg text-center">
             <h1 class="text-2xl font-bold text-[#264653]">Welcome to MoneyMate</h1>
@@ -40,6 +53,7 @@
 
             <div class="mt-4">
                 <button class="bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-[#21867A]">Add Expense</button>
+                
                 <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg hover:bg-[#D4A74F]">View Reports</button>
             </div>
 
