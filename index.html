@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoneyMate</title>
-    <link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="relative">
@@ -20,7 +21,7 @@
                 <span class="ml-3 text-xl text-white">MoneyMate</span>
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">Home</a>
+                <a class="mr-5 hover:text-[#E9C46A] cursor-pointer"><i class="fa-solid fa-house"></i> Home</a>
                 <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">Dashbord</a>
                 <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">Transaction</a>
                 <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">Logout</a>
@@ -33,46 +34,57 @@
         </div>
     </header>
 
-    <div class=" form-container hidden justify-center items-center w-full h-full add-form absolute z-10 bg-[#264653]/90">
+    <div
+        class=" form-container hidden justify-center items-center w-full h-full add-form absolute z-10 bg-[#264653]/90">
         <form action="" class="form-details flex flex-col w-[400px] p-8 rounded-2xl bg-white shadow-lg relative">
-            <div class="exit w-5 h-5 flex items-center justify-center text-red-700 font-bold absolute right-4 top-4 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200">×</div>
+            <div
+                class="exit w-5 h-5 flex items-center justify-center text-red-700 font-bold absolute right-4 top-4 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200">
+                <i class="fa-solid fa-xmark"></i></div>
 
             <h2 class="text-2xl font-bold text-[#264653] text-center mb-6">Add New Expense</h2>
-    
+
             <label for="title" class="font-semibold mb-1">Title<span class="text-red-600">*</span></label>
-            <input type="text" placeholder="Expense Title" class="rounded-full border border-[#2A9D8F] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]" required>
-    
+            <input type="text" placeholder="Expense Title"
+                class="rounded-full border border-[#2A9D8F] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"
+                required>
+
             <label for="amount" class="font-semibold mb-1">Spend Amount<span class="text-red-600">*</span></label>
-            <input type="number" placeholder="Amount" class="rounded-full border border-[#E76F51] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E76F51]" required>
-    
+            <input type="number" placeholder="Amount"
+                class="rounded-full border border-[#E76F51] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E76F51]"
+                required>
+
             <label for="category" class="font-semibold mb-1">Category</label>
-            <select class="rounded-full border border-[#E9C46A] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E9C46A]">
+            <select
+                class="rounded-full border border-[#E9C46A] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E9C46A]">
                 <option>Food</option>
                 <option>Transport</option>
                 <option>Shopping</option>
                 <option>Other</option>
             </select>
-    
-            <label for="date" class="font-semibold mb-1">Date</label>
-            <input type="date" class="rounded-full border border-[#264653] p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#264653]">
-    
-            <button value="submit" class="bg-[#2A9D8F] text-white px-6 py-2 rounded-full hover:bg-[#21867A] transition">Save</button>
+
+            <label for="date" class="font-semibold mb-1">Date<span class="text-red-600">*</span></label>
+            <input type="date" required
+                class="rounded-full border border-[#264653] p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#264653]">
+
+            <button value="submit"
+                class="bg-[#2A9D8F] text-white px-6 py-2 rounded-full hover:bg-[#21867A] transition">Save</button>
         </form>
     </div>
-    
+
     <main class="flex items-center flex-col justify-center min-h-[80vh] bg-[#F4F4F4]">
         <div class="bg-white shadow-lg rounded-2xl p-8 w-[90%] max-w-lg text-center">
             <h1 class="text-2xl font-bold text-[#264653]">Welcome to MoneyMate</h1>
             <p class="text-gray-600 mt-2">Track your expenses easily</p>
 
             <div class="mt-4">
-                <button class="add-spend bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-[#21867A]" onclick="add_expense()">Add Expense</button>
+                <button class="add-spend bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-[#21867A]"
+                    onclick="add_expense()">Add Expense</button>
 
-                <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg hover:bg-[#D4A74F]">View Reports</button>
+                <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg hover:bg-[#D4A74F]"><i class="fa-solid fa-chart-simple"></i> View Reports</button>
             </div>
 
             <div class="mt-6 ">
-                <label class="text-gray-700">Wallet Balance :</label>
+                <label class="text-gray-700"> <i class="fa-solid fa-wallet"></i> Wallet Balance :</label>
                 <input type="number" class=" wallet border border-gray-300 rounded-md p-2 w-full mt-2">
                 <p class="error-msg text-red-600 flex ml-2 "></p>
             </div>
@@ -84,7 +96,7 @@
                 </div>
                 <div>
                     <h2 class="text-lg font-semibold">Total Spent</h2>
-                    <p class="text-xl font-bold text-[#E76F51]">₹0.00</p>
+                    <p class="money-spend text-xl font-bold text-[#E76F51]">₹0.00</p>
                 </div>
             </div>
         </div>
@@ -99,4 +111,22 @@
     <script src="script.js"></script>
 </body>
 
-</html>
+</html>                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
+
+
+
+                                                
