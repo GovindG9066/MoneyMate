@@ -6,6 +6,16 @@ let exit = document.querySelector(".exit");
 let form_cont = document.querySelector(".form-container");
 let spend = document.querySelector(".add-spend");
 let total_spend=0.00;
+let mode=document.querySelector(".mode-button");
+let btn_circle=document.querySelector(".btn-circle");
+let isright=false;
+btn_circle.addEventListener("click", ()=>{
+    isright=!isright;
+    
+    btn_circle.classList.toggle("translate-x-full",isright);
+    console.log("Btn click");
+})
+
 
 
 wallet.addEventListener("keydown", (event) => {
