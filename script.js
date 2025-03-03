@@ -12,7 +12,7 @@ let isright=false;
 btn_circle.addEventListener("click", ()=>{
     isright=!isright;
     
-    btn_circle.classList.toggle("translate-x-full",isright);
+    btn_circle.classList.toggle("translate-x-5",isright);
     console.log("Btn click");
 })
 
