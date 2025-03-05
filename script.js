@@ -5,16 +5,22 @@ let error_msg = document.querySelector(".error-msg");
 let exit = document.querySelector(".exit");
 let form_cont = document.querySelector(".form-container");
 let spend = document.querySelector(".add-spend");
-let total_spend=0.00;
-let mode=document.querySelector(".mode-button");
-let btn_circle=document.querySelector(".btn-circle");
-let isright=false;
-btn_circle.addEventListener("click", ()=>{
-    isright=!isright;
-    
-    btn_circle.classList.toggle("translate-x-5",isright);
-    console.log("Btn click");
-})
+let total_spend = 0.00;
+let mode = document.querySelector(".mode-button");
+let btn_circle = document.querySelector(".btn-circle");
+let isright = false;
+
+mode.addEventListener("click", () => {
+    isRight = !isRight; 
+
+    if (isRight) {
+        btn_circle.classList.add("left-5");
+        btn_circle.classList.remove("left-0");
+    } else {
+        btn_circle.classList.add("left-0");
+        btn_circle.classList.remove("left-5");
+    }
+});
 
 
 
@@ -27,9 +33,9 @@ wallet.addEventListener("keydown", (event) => {
             if (amount === null) throw "Please enter a valid input";
             if (amount === 0) throw "Zero in not allowed";
             if (amount < 0) throw "negative number is not allowed";
-            current_bal+=amount;
+            current_bal += amount;
             Available_bal.innerHTML = `₹${current_bal.toFixed(2)}`;
-            error_msg.innerHTML="";
+            error_msg.innerHTML = "";
             wallet.value = "";
         } catch (error) {
             error_msg.innerHTML = error;
@@ -68,19 +74,19 @@ function history_items() {
         let date = document.querySelector("input[type='date']").value;
         let current_time = new Date();
         let live_Time = current_time.toLocaleTimeString();
-        
-        let money_spend=document.querySelector(".money-spend");
+
+        let money_spend = document.querySelector(".money-spend");
 
         try {
-            if(current_bal===0)throw "There is no balance in your account"
-            if(isNaN(amount) || amount<= 0) throw "There is no available balance in your account";
-            if(current_bal<amount)throw "Insufficient balance";
-            current_bal-=amount;
-            Available_bal.innerHTML=`₹${current_bal.toFixed(2)}`;
-            total_spend+=amount;
-            money_spend.innerHTML=`₹${total_spend.toFixed(2)}`;
-            
-            
+            if (current_bal === 0) throw "There is no balance in your account"
+            if (isNaN(amount) || amount <= 0) throw "There is no available balance in your account";
+            if (current_bal < amount) throw "Insufficient balance";
+            current_bal -= amount;
+            Available_bal.innerHTML = `₹${current_bal.toFixed(2)}`;
+            total_spend += amount;
+            money_spend.innerHTML = `₹${total_spend.toFixed(2)}`;
+
+
         } catch (error) {
             alert(error);
             exit_form();
