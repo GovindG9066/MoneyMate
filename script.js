@@ -8,19 +8,33 @@ let spend = document.querySelector(".add-spend");
 let total_spend = 0.00;
 let mode = document.querySelector(".mode-button");
 let btn_circle = document.querySelector(".btn-circle");
-let isright = false;
 
-mode.addEventListener("click", () => {
-    isRight = !isRight; 
+mode.addEventListener("click",()=>{
+    btn_circle.classList.toggle("translate-x-full");
+    document.body.classList.toggle("dark");
+    console.log("hello");
+    
+    
+})
 
-    if (isRight) {
-        btn_circle.classList.add("left-5");
-        btn_circle.classList.remove("left-0");
-    } else {
-        btn_circle.classList.add("left-0");
-        btn_circle.classList.remove("left-5");
-    }
-});
+// mode.addEventListener("click", () => {
+//     isRight = !isRight; 
+
+//     if (isRight) {
+//         btn_circle.classList.add("translate-x-full");
+//         btn_circle.classList.add("bg-white");
+//         btn_circle.classList.remove("translate-x-0");
+//         console.log("clicked");
+        
+        
+//     } else {
+//         btn_circle.classList.add("translate-x-0");
+//         btn_circle.classList.add("bg-black");
+//         btn_circle.classList.remove("translate-x-full");
+//         console.log("not clicked");
+        
+//     }
+// });
 
 
 

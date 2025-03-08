@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="relative">
-    <header class="text-white body-font bg-[#264653]">
+<body class="relative dark:bg-[#121212] bg-white body">
+    <header class="navbar text-white dark:text-[#E0E0E0] body-font bg-[#264653] dark:bg-[#1E1E1E]">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
@@ -18,23 +18,20 @@
                     viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                 </svg>
-                <span class="ml-3 text-xl text-white">MoneyMate</span>
+                <span class="ml-3 text-xl text-white dark:text-[#F4F4F4]">MoneyMate</span>
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-[#E9C46A] cursor-pointer"><i class="fa-solid fa-house"></i> Home</a>
-                <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">Dashbord</a>
-                <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">Transaction</a>
-                <a class="mr-5 hover:text-[#E9C46A] cursor-pointer">LogIn</a>
+                <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer"><i class="fa-solid fa-house"></i> Home</a>
+                <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">Dashbord</a>
+                <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">Transaction</a>
+                <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">LogIn</a>
             </nav>
             <div class="mode-button cursor-pointer overflow-hidden bg-gray-200 w-10 h-5 rounded-full relative">
-                <div class="btn-circle h-5 w-5 border cursor-pointer transition-all duration-300 rounded-full bg-[#2A9D8F] absolute left-0">
+                <div class="btn-circle  h-5 w-5 border cursor-pointer transition-all duration-300 rounded-full bg-[#2A9D8F] absolute left-0">
                 </div>
             </div>
             
-            <!-- <button class="button bg-gray-200 w-10 h-5 rounded-full relative border border-red-600">
-                <div class="btn-circle h-5 w-5 border rounded-full bg-[#2A9D8F] left-0 bottom-0 absolute ">
-                </div>
-            </button> -->
+            
         </div>
     </header>
         <!-- This is the form where i add the property of hidden and flex which applied using the js  -->
@@ -75,21 +72,21 @@
         </form>
     </div>
 
-    <main class="flex items-center flex-col justify-center min-h-[80vh] bg-[#F4F4F4]">
-        <div class="bg-white shadow-lg rounded-2xl p-8 w-[90%] max-w-lg text-center">
-            <h1 class="text-2xl font-bold text-[#264653]">Welcome to MoneyMate</h1>
-            <p class="text-gray-600 mt-2">Track your expenses easily</p>
+    <main class="flex items-center flex-col justify-center min-h-[80vh] bg-[#F4F4F4] dark:bg-[#121212]">
+        <div class="bg-white dark:bg-[#1A1A1A] shadow-lg rounded-2xl p-8 w-[90%] max-w-lg text-center">
+            <h1 class="text-2xl font-bold text-[#264653] dark:text-[#F4F4F4]">Welcome to MoneyMate</h1>
+            <p class="text-gray-600 mt-2 dark:text-[#E0E0E0]">Track your expenses easily</p>
                 <!-- buttons of the add expence and the view report where i add the expance and the graph for the view report button  -->
             <div class="mt-4">
                 <button class="add-spend bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-[#21867A]"
                     onclick="add_expense()">Add Expense</button>
 
-                <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg hover:bg-[#D4A74F]"><i class="fa-solid fa-chart-simple"></i> View Reports</button>
+                <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg dark:text-[#E0E0E0] hover:bg-[#D4A74F]"><i class="fa-solid fa-chart-simple"></i> View Reports</button>
             </div>
 
             <div class="mt-6 ">
                 <label class="text-gray-700"> <i class="fa-solid fa-wallet"></i> Wallet Balance :</label>
-                <input type="number" class=" wallet border border-gray-300 rounded-md p-2 w-full mt-2">
+                <input type="number" class=" wallet border border-gray-300 dark:border-[#E0E0E0] dark:bg-[#1E1E1E] rounded-md p-2 w-full mt-2">
                 <p class="error-msg text-red-600 flex ml-2 "></p>
             </div>
                 <!-- here is the available balance and the total spend  -->
