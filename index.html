@@ -86,24 +86,25 @@
 
             <div class="mt-6 ">
                 <label class="text-gray-700"> <i class="fa-solid fa-wallet"></i> Wallet Balance :</label>
-                <input type="number" class=" wallet border border-gray-300 dark:border-[#E0E0E0] dark:bg-[#1E1E1E] rounded-md p-2 w-full mt-2">
+                <input type="number" class=" wallet border border-gray-300 dark:border-[#2D2D3D] dark:bg-[#1E1E2F]  rounded-md p-2 w-full mt-2">
                 <p class="error-msg text-red-600 flex ml-2 "></p>
             </div>
                 <!-- here is the available balance and the total spend  -->
             <div class="flex justify-between items-center mt-6">
                 <div>
-                    <h2 class="text-lg font-semibold">Available Balance</h2>
-                    <p class="Available-bal text-xl font-bold text-[#2A9D8F]">₹0.00</p>
+                    <h2 class="text-lg font-semibold dark:text-[#06D6A0]">Available Balance</h2>
+                    <p class="Available-bal text-xl font-bold text-[#2A9D8F] dark:text-[#76C7C0]">₹0.00</p>
                 </div>
                 <div>
-                    <h2 class="text-lg font-semibold">Total Spent</h2>
-                    <p class="money-spend text-xl font-bold text-[#E76F51]">₹0.00</p>
+                    <h2 class="text-lg font-semibold dark:text-[#EF476F]
+                    ">Total Spent</h2>
+                    <p class="money-spend text-xl font-bold text-[#E76F51] dark:text-[#FF6B6B]">₹0.00</p>
                 </div>
             </div>
         </div>
         <div class="border w-[70%] my-8 rounded-xl flex flex-col shadow shadow-gray-300 p-3">
             <h2 class="text-left pl-5 font-bold text-2xl text-sky-600">History</h2>
-            <div id="history-container" class="border border-purple-800 my-5 mx-5 rounded-xl flex flex-col gap-3 p-3">
+            <div id="history-container" class="border border-purple-800 dark:border-[#5A5A5A] my-5 mx-5 rounded-xl flex flex-col gap-3 p-3">
                 <!-- Dynamic history items will be added here -->
             </div>
         </div>
