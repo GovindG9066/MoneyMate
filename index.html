@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="relative dark:bg-[#121212] bg-white body">
+<body class="relative dark:bg-[#121212] bg-white body h-full">
     <header class="navbar text-white dark:text-[#E0E0E0] body-font bg-[#264653] dark:bg-[#1E1E1E]">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -36,39 +36,39 @@
     </header>
         <!-- This is the form where i add the property of hidden and flex which applied using the js  -->
     <div
-        class=" form-container hidden justify-center items-center w-full h-full add-form absolute z-10 bg-[#264653]/90">
-        <form action="" class="form-details flex flex-col w-[400px] p-8 rounded-2xl bg-white shadow-lg relative">
+        class=" form-container hidden justify-center items-center w-full h-full add-form absolute z-10 bg-[#264653]/90 dark:bg-[#1B2A41]/80">
+        <form action="" class="dark:bg-[#212F45] form-details flex flex-col w-[400px] p-8 rounded-2xl bg-white shadow-lg relative">
             <div
-                class="exit w-5 h-5 flex items-center justify-center text-red-700 font-bold absolute right-4 top-4 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200">
+                class="exit w-5 h-5 flex items-center justify-center text-red-700 dark:text-[#E63946] font-bold absolute right-4 top-4 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200">
                 <i class="fa-solid fa-xmark"></i></div>
 
-            <h2 class="text-2xl font-bold text-[#264653] text-center mb-6">Add New Expense</h2>
+            <h2 class="text-2xl font-bold text-[#264653] dark:text-[#F5F5F5] text-center mb-6">Add New Expense</h2>
 
-            <label for="title" class="font-semibold mb-1">Title<span class="text-red-600">*</span></label>
+            <label for="title" class="font-semibold dark:text-[#A8DADC] mb-1">Title<span class="text-red-600">*</span></label>
             <input type="text" placeholder="Expense Title"
-                class="rounded-full border border-[#2A9D8F] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"
+                class="rounded-full border dark:bg-[#2E3B55] border-[#2A9D8F] dark:border-[#06D6A0] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"
                 required>
 
-            <label for="amount" class="font-semibold mb-1">Spend Amount<span class="text-red-600">*</span></label>
+            <label for="amount" class="font-semibold dark:text-[#A8DADC] mb-1">Spend Amount<span class="text-red-600">*</span></label>
             <input type="number" placeholder="Amount"
-                class="rounded-full border border-[#E76F51] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E76F51]"
+                class="rounded-full border dark:bg-[#2E3B55] border-[#E76F51] dark:border-[#E63946] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E76F51]"
                 required>
 
-            <label for="category" class="font-semibold mb-1">Category</label>
+            <label for="category" class="font-semibold dark:text-[#A8DADC] mb-1">Category</label>
             <select
-                class="rounded-full border border-[#E9C46A] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E9C46A]">
+                class="rounded-full border dark:bg-[#2E3B55] border-[#E9C46A] dark:border-[#F4A261] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E9C46A]">
                 <option>Food</option>
                 <option>Transport</option>
                 <option>Shopping</option>
                 <option>Other</option>
             </select>
 
-            <label for="date" class="font-semibold mb-1">Date<span class="text-red-600">*</span></label>
+            <label for="date" class="font-semibold dark:text-[#A8DADC] mb-1">Date<span class="text-red-600">*</span></label>
             <input type="date" required
-                class="rounded-full border border-[#264653] p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#264653]">
+                class="rounded-full border dark:bg-[#2E3B55] border-[#264653] dark:border-[#62B6CB] p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#264653]">
 
             <button value="submit"
-                class="bg-[#2A9D8F] text-white px-6 py-2 rounded-full hover:bg-[#21867A] transition">Save</button>
+                class="bg-[#2A9D8F] text-white px-6 py-2 rounded-full dark:bg-[#0FA3B1] dark hover:bg-[#21867A] transition">Save</button>
         </form>
     </div>
 
