@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoneyMate</title>
     <link rel="stylesheet" href="./src/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="relative dark:bg-[#121212] bg-white body h-full scroll-m-3">
+<body class="relative dark:bg-[#121212] bg-white h-full">
     <header class="navbar text-white dark:text-[#E0E0E0] body-font bg-[#264653] dark:bg-[#1E1E1E]">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -21,35 +23,42 @@
                 <span class="ml-3 text-xl text-white dark:text-[#F4F4F4]">MoneyMate</span>
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer"><i class="fa-solid fa-house"></i> Home</a>
+                <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer"><i
+                        class="fa-solid fa-house"></i> Home</a>
                 <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">Dashbord</a>
                 <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">Transaction</a>
                 <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">LogIn</a>
             </nav>
-            <div class="mode-button cursor-pointer overflow-hidden bg-gray-200 w-10 h-5 rounded-full relative">
-                <div class="btn-circle  h-5 w-5 border cursor-pointer transition-all duration-300 rounded-full bg-[#2A9D8F] absolute left-0">
+            <div class="btn-container w-10 h-5 bg-gray-200 rounded-full border-none cursor-pointer ">
+                <div
+                    class="btn-circle bg-[#2A9D8F] w-5 h-5 border rounded-full transition-all duration-200 ease-in-out cursor-pointer ">
+
                 </div>
             </div>
-            
-            
+
+
         </div>
     </header>
-        <!-- This is the form where i add the property of hidden and flex which applied using the js  -->
+    <!-- This is the form where i add the property of hidden and flex which applied using the js  -->
     <div
         class=" form-container hidden justify-center items-center w-full h-full add-form absolute z-10 bg-[#264653]/90 dark:bg-[#1B2A41]/80">
-        <form action="" class="dark:bg-[#212F45] form-details flex flex-col w-[400px] p-8 rounded-2xl bg-white shadow-lg relative">
+        <form action=""
+            class="dark:bg-[#212F45] form-details flex flex-col w-[400px] p-8 rounded-2xl bg-white shadow-lg relative">
             <div
                 class="exit w-5 h-5 flex items-center justify-center text-red-700 dark:text-[#E63946] font-bold absolute right-4 top-4 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200">
-                <i class="fa-solid fa-xmark"></i></div>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
 
             <h2 class="text-2xl font-bold text-[#264653] dark:text-[#F5F5F5] text-center mb-6">Add New Expense</h2>
 
-            <label for="title" class="font-semibold dark:text-[#A8DADC] mb-1">Title<span class="text-red-600">*</span></label>
+            <label for="title" class="font-semibold dark:text-[#A8DADC] mb-1">Title<span
+                    class="text-red-600">*</span></label>
             <input type="text" placeholder="Expense Title"
                 class="rounded-full border dark:bg-[#2E3B55] border-[#2A9D8F] dark:border-[#06D6A0] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"
                 required>
 
-            <label for="amount" class="font-semibold dark:text-[#A8DADC] mb-1">Spend Amount<span class="text-red-600">*</span></label>
+            <label for="amount" class="font-semibold dark:text-[#A8DADC] mb-1">Spend Amount<span
+                    class="text-red-600">*</span></label>
             <input type="number" placeholder="Amount"
                 class="rounded-full border dark:bg-[#2E3B55] border-[#E76F51] dark:border-[#E63946] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E76F51]"
                 required>
@@ -63,7 +72,8 @@
                 <option>Other</option>
             </select>
 
-            <label for="date" class="font-semibold dark:text-[#A8DADC] mb-1">Date<span class="text-red-600">*</span></label>
+            <label for="date" class="font-semibold dark:text-[#A8DADC] mb-1">Date<span
+                    class="text-red-600">*</span></label>
             <input type="date" required
                 class="rounded-full border dark:bg-[#2E3B55] border-[#264653] dark:border-[#62B6CB] p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#264653]">
 
@@ -76,20 +86,22 @@
         <div class="bg-white dark:bg-[#1A1A1A] shadow-lg rounded-2xl p-8 w-[90%] max-w-lg text-center">
             <h1 class="text-2xl font-bold text-[#264653] dark:text-[#F4F4F4]">Welcome to MoneyMate</h1>
             <p class="text-gray-600 mt-2 dark:text-[#E0E0E0]">Track your expenses easily</p>
-                <!-- buttons of the add expence and the view report where i add the expance and the graph for the view report button  -->
+            <!-- buttons of the add expence and the view report where i add the expance and the graph for the view report button  -->
             <div class="mt-4">
                 <button class="add-spend bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-[#21867A]"
                     onclick="add_expense()">Add Expense</button>
 
-                <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg dark:text-[#E0E0E0] hover:bg-[#D4A74F]"><i class="fa-solid fa-chart-simple"></i> View Reports</button>
+                <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg dark:text-[#E0E0E0] hover:bg-[#D4A74F]"><i
+                        class="fa-solid fa-chart-simple"></i> View Reports</button>
             </div>
 
             <div class="mt-6 ">
                 <label class="text-gray-700"> <i class="fa-solid fa-wallet"></i> Wallet Balance :</label>
-                <input type="number" class=" wallet border border-gray-300 dark:border-[#2D2D3D] dark:bg-[#1E1E2F]  rounded-md p-2 w-full mt-2">
+                <input type="number"
+                    class=" wallet border border-gray-300 dark:border-[#2D2D3D] dark:bg-[#1E1E2F]  rounded-md p-2 w-full mt-2">
                 <p class="error-msg text-red-600 flex ml-2 "></p>
             </div>
-                <!-- here is the available balance and the total spend  -->
+            <!-- here is the available balance and the total spend  -->
             <div class="flex justify-between items-center mt-6">
                 <div>
                     <h2 class="text-lg font-semibold dark:text-[#06D6A0]">Available Balance</h2>
@@ -104,14 +116,66 @@
         </div>
         <div class="border w-[70%] my-8 rounded-xl flex flex-col shadow shadow-gray-300 p-3">
             <h2 class="text-left pl-5 font-bold text-2xl text-sky-600">History</h2>
-            <div id="history-container" class="border border-purple-800 dark:border-[#5A5A5A] my-5 mx-5 rounded-xl flex flex-col gap-3 p-3">
+            <div id="history-container"
+                class="border border-purple-800 dark:border-[#5A5A5A] my-5 mx-5 rounded-xl flex flex-col gap-3 p-3">
                 <!-- Dynamic history items will be added here -->
+
             </div>
         </div>
+
+
+        <div class="hidden login-page mb-10 justify-center w-full h-full absolute z-20 items-center bg-gray-300">
+
+            <form action="" class="flex flex-col justify-center p-3 bg-amber-900 rounded-xl w-[30%] ">
+                <h2 class="font-bold text-3xl text-cyan-500 m-auto mb-1.5">Login</h2>
+                <label for="Username" class="text-orange-50">Username</label>
+                <input type="text" name="name" placeholder="Username"
+                    class="Username border border-t-0 border-l-0 border-r-0 focus:border-none border-b-orange-400 my-2 rounded-full pl-2 py-0.5 ">
+
+                <label for="Password" class="text-orange-50">Password</label>
+                <input type="password" name="Password" placeholder="Password"
+                    class="Password border border-t-0 border-l-0 border-r-0 focus:border-none border-b-orange-400 my-2 rounded-full pl-2 py-0.5 ">
+
+                <a href="" class="my-2 hover:underline">forgot Password?</a>
+                <div class="login-registration-btn flex justify-evenly">
+                    <input type="button" value="Login"
+                        class=" font-bold text-teal-400 cursor-pointer w-2/6 border rounded-full py-1 transition-all duration-200 ease-in-out hover:-translate-y-1">
+                    <input type="button" value="New Registration"
+                        class=" font-bold text-teal-400 cursor-pointer p-2 border rounded-full py-1 transition-all duration-200 ease-in-out hover:-translate-y-1 ">
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class=" login-page mb-10 flex justify-center w-full h-full absolute z-20 items-center bg-gray-300">
+
+            <form action="" class="flex flex-col justify-center p-3 bg-amber-900 rounded-xl w-[30%] ">
+                <h2 class="font-bold text-3xl text-cyan-500 m-auto mb-1.5">Register</h2>
+                <label for="Username" class="text-orange-50">Name</label>
+                <input type="text" name="name" placeholder="Name"
+                class="Username border border-t-0 border-l-0 border-r-0 focus:border-none border-b-orange-400 my-2 rounded-full pl-2 py-0.5 ">
+                
+                <label for="Username" class="text-orange-50">Username</label>
+                <input type="text" name="name" placeholder="Username"
+                    class="Username border border-t-0 border-l-0 border-r-0 focus:border-none border-b-orange-400 my-2 rounded-full pl-2 py-0.5 ">
+
+                <label for="Password" class="text-orange-50">Password</label>
+                <input type="password" name="Password" placeholder="Password"
+                    class="Password border border-t-0 border-l-0 border-r-0 focus:border-none border-b-orange-400 my-2 rounded-full pl-2 py-0.5 ">
+
+                <div class="login-registration-btn flex justify-evenly">
+                    <input type="button" value="New Registration"
+                        class=" font-bold text-teal-400 cursor-pointer p-2 border rounded-full py-1 transition-all duration-200 ease-in-out hover:-translate-y-1 ">
+                    <input type="button" value="Login"
+                        class=" font-bold text-teal-400 cursor-pointer w-2/6 border rounded-full py-1 transition-all duration-200 ease-in-out hover:-translate-y-1">
+                </div>
+
+            </form>
+        </div>
     </main>
-    
 
     <script src="script.js"></script>
 </body>
 
-</html>                          
+</html>
