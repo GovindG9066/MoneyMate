@@ -8,12 +8,18 @@ let spend = document.querySelector(".add-spend");
 let total_spend = 0.00;
 let btn_container = document.querySelector(".btn-container");
 let btn_circle = document.querySelector(".btn-circle");
+// let btnevent=document.querySelector(".btnevent");
 
 
-btn_container.addEventListener("click",()=>{
-    btn_circle.classList.toggle("translate-x-5");
-    console.log(btn_circle.classList);
+
+// btn_container.addEventListener("click",()=>{
+//     btn_circle.classList.toggle("translate-x-5");
+//     console.log(btn_circle.classList);
     
+//     document.body.classList.toggle("dark");
+// });
+btn_container.addEventListener("click",()=>{
+    btn_circle.classList.toggle("btnevent");
     document.body.classList.toggle("dark");
 });
 
