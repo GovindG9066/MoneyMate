@@ -13,9 +13,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="style.css">
 </head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <body class="relative dark:bg-[#121212] bg-white h-full">
-    <header class="navbar text-white dark:text-[#E0E0E0] body-font bg-[#264653] dark:bg-[#1E1E1E]">
+    <header class="navbar text-white dark:text-[#E0E0E0] body-font bg-[#264653] dark:bg-[#1E1E1E] sticky">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
@@ -96,6 +97,9 @@
 
                 <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg dark:text-[#E0E0E0] hover:bg-[#D4A74F]"><i
                         class="fa-solid fa-chart-simple"></i> View Reports</button>
+                        <div id="showChartBtn" class="mt-6 w-full hidden">
+                            <canvas id="expenseChart"></canvas>
+                        </div>
             </div>
 
             <div class="mt-6 ">
@@ -179,6 +183,7 @@
     </main>
 
     <script src="script.js"></script>
+    <script src="Chart.js"></script>
 </body>
 
 </html>
