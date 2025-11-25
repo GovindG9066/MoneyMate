@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', lambda request: redirect('landing')),  # home
+    path('', lambda request: redirect('landing')),  # home
     path('', include('moneymate_app.urls')),
 ]
 
