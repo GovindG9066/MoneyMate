@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-seh!m!v^+7)*^fqd5s*rcxt&&dc4@9p!bj=y99ip@-#9^%dwe9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True  Rander.com
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = [] Rander.com
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -40,7 +42,10 @@ INSTALLED_APPS = [
     'moneymate_app',
 ]
 
+
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',  #Rander.com
+    'django.middleware.security.SecurityMiddleware',#Rander.com
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -72,6 +77,15 @@ import os
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'templates')]
+
+# Rander.com
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WSGI_APPLICATION = 'New_MoneyMate1.wsgi.application'
 
