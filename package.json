@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.8"
+  },
+  "name": "new_moneymate1",
+  "version": "1.0.0",
+  "description": "This is my project wher it is use for the user daily money spending and add it in the account of user",
+  "main": "Chart.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

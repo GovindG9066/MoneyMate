@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyMate - Smart Expense Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white min-h-screen flex flex-col">
+
+    <!-- 🌟 Navbar -->
+    <header class="flex justify-between items-center px-8 py-4 bg-white/10 backdrop-blur-lg shadow-lg">
+        <h1 class="text-2xl font-bold tracking-wide">💸 MoneyMate</h1>
+        <nav class="space-x-6">
+            <a href="#features" class="hover:text-yellow-300">Features</a>
+            <a href="#about" class="hover:text-yellow-300">About</a>
+            <a href="#contact" class="hover:text-yellow-300">Contact</a>
+        </nav>
+        <div class="space-x-3">
+            <a href="{% url 'login' %}"
+                class="px-4 py-2 bg-white text-indigo-600 font-semibold rounded-xl hover:bg-yellow-300 hover:text-black transition">Login</a>
+            <a href="{% url 'register' %}"
+                class="px-4 py-2 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-white transition">Sign
+                Up</a>
+        </div>
+    </header>
+
+    <!-- 💡 Hero Section -->
+    <section
+        class="flex flex-col md:flex-row items-center justify-center text-center md:text-left px-10 py-20 md:py-28">
+        <div class="md:w-1/2 space-y-6">
+            <h2 class="text-5xl font-extrabold leading-tight">Track. Save. Grow with <span
+                    class="text-yellow-300">MoneyMate</span></h2>
+            <p class="text-lg text-gray-100">
+                Simplify your expense tracking and stay on top of your finances.
+                Visualize your spending trends and make smarter money decisions.
+            </p>
+            <div class="space-x-4 mt-6">
+                <a href="{% url 'login'%}"
+                    class="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-white transition">Get
+                    Started</a>
+                <a href="#features"
+                    class="px-6 py-3 border-2 border-white rounded-full hover:bg-white hover:text-indigo-700 transition">Learn
+                    More</a>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png" alt="Finance Illustration"
+                class="w-80 md:w-96 drop-shadow-2xl animate-bounce">
+        </div>
+    </section>
+
+    <!-- 🚀 Features -->
+    <section id="features" class="bg-white/10 py-16 px-8 rounded-t-3xl">
+        <h3 class="text-3xl font-bold text-center mb-10">Why Choose MoneyMate?</h3>
+        <div class="grid md:grid-cols-3 gap-10 text-center">
+            <div class="p-6 bg-white/10 rounded-2xl backdrop-blur-sm hover:scale-105 transition">
+                <img src="https://cdn-icons-png.flaticon.com/512/4144/4144723.png" class="w-16 mx-auto mb-4" alt="">
+                <h4 class="text-xl font-semibold mb-2">Smart Expense Tracking</h4>
+                <p>Automatically organize your spending and manage your daily expenses effortlessly.</p>
+            </div>
+            <div class="p-6 bg-white/10 rounded-2xl backdrop-blur-sm hover:scale-105 transition">
+                <img src="https://cdn-icons-png.flaticon.com/512/846/846449.png" class="w-16 mx-auto mb-4" alt="">
+                <h4 class="text-xl font-semibold mb-2">Data Visualization</h4>
+                <p>Get insightful graphs and trends to understand your financial habits better.</p>
+            </div>
+            <div class="p-6 bg-white/10 rounded-2xl backdrop-blur-sm hover:scale-105 transition">
+                <img src="https://cdn-icons-png.flaticon.com/512/942/942799.png" class="w-16 mx-auto mb-4" alt="">
+                <h4 class="text-xl font-semibold mb-2">Secure and Private</h4>
+                <p>All your financial data is stored securely and only accessible by you.</p>
+            </div>
+        </div>
+    </section>
+    <!-- 🧾 About Section -->
+    <section id="about" class="py-20 px-8 bg-white/10 backdrop-blur-md text-center">
+        <h3 class="text-3xl font-bold mb-6">About MoneyMate</h3>
+        <p class="max-w-3xl mx-auto text-lg text-gray-100 leading-relaxed">
+            <span class="font-semibold text-yellow-300">MoneyMate</span> is a smart expense tracking web application
+            designed to help users
+            manage their income and spending efficiently. It enables users to add, track, and visualize
+            their daily, weekly, and monthly transactions through dynamic charts and a simple dashboard.
+            With secure login and OTP-based editing, MoneyMate ensures both convenience and privacy.
+        </p>
+
+        <div class="mt-8 space-y-3">
+            <p>💡 <span class="font-semibold">Vision:</span> To make financial tracking simple and accessible for
+                everyone.</p>
+            <p>🧠 <span class="font-semibold">Tech Stack:</span> HTML, Tailwind CSS, JavaScript, Spring Boot, MongoDB
+            </p>
+            <p>👨‍💻 <span class="font-semibold">Developed by:</span> <br> Govind Dagadu Gadekar,<br>
+                                                                    Pradeep Taware <br>(MCA-I First Semister Project)
+            </p>
+        </div>
+    </section>
+
+    <!-- 📞 Contact Section -->
+<section id="contact" class="py-20 px-8 bg-white/10 backdrop-blur-md text-center">
+  <h3 class="text-3xl font-bold mb-6">Contact Us</h3>
+  <p class="max-w-2xl mx-auto text-gray-100 mb-10">
+    Have any questions, suggestions, or feedback about <span class="text-yellow-300 font-semibold">MoneyMate</span>?  
+    We’d love to hear from you! Fill out the form below or reach us through our social profiles.
+  </p>
+
+  <!-- 📨 Contact Form -->
+  <form action="#" method="post" class="max-w-lg mx-auto bg-white/10 p-6 rounded-2xl space-y-4">
+    <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none">
+    <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none">
+    <textarea rows="4" placeholder="Your Message" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none"></textarea>
+    <button type="submit" class="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-white transition">Send Message</button>
+  </form>
+
+  <!-- 🔗 Social Links -->
+  <div class="flex justify-center mt-8 space-x-6 text-2xl">
+    <a href="mailto:gadekargovind575@gmail.com" class="hover:text-yellow-300"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://github.com/GovindG9066" target="_blank" class="hover:text-yellow-300"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank" class="hover:text-yellow-300"><i class="fa-brands fa-linkedin"></i></a>
+  </div>
+</section>
+
+
+
+    <!-- 📞 Footer -->
+    <footer id="contact" class="text-center py-6 mt-auto bg-white/10">
+        <p>© 2025 MoneyMate | Designed by <span class="text-yellow-300 font-semibold">Govind</span></p>
+    </footer>
+
+</body>
+
+</html>
