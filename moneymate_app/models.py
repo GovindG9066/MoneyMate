@@ -39,7 +39,7 @@ class Profile(models.Model):
 
     profile_image = models.ImageField(
     upload_to='profile_pics/',
-    default='images/default.jpg'
+    default='default.jpg'
 )
 
     dob = models.DateField(null=True, blank=True)
