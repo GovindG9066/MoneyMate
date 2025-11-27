@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-seh!m!v^+7)*^fqd5s*rcxt&&dc4@9p!bj=y99ip@-#9^%dwe9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'moneymate-ij5j.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
+
 
 
 # Application definition
