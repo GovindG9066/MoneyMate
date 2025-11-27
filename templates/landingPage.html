@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,36 +93,59 @@
         <div class="mt-8 space-y-3">
             <p>💡 <span class="font-semibold">Vision:</span> To make financial tracking simple and accessible for
                 everyone.</p>
-            <p>🧠 <span class="font-semibold">Tech Stack:</span> HTML, Tailwind CSS, JavaScript, Spring Boot, MongoDB
+            <p>🧠 <span class="font-semibold">Tech Stack:</span> HTML, Tailwind CSS, JavaScript, Django-Framework,
             </p>
-            <p>👨‍💻 <span class="font-semibold">Developed by:</span> Govind Dagadu Gadekar (BSc-IT Final Year Project)
+            <p>👨‍💻 <span class="font-semibold">Developed by:</span> Govind Dagadu Gadekar <br> Pradeep Taware (MCA-I
+                First Year Project)
             </p>
         </div>
     </section>
 
     <!-- 📞 Contact Section -->
-<section id="contact" class="py-20 px-8 bg-white/10 backdrop-blur-md text-center">
-  <h3 class="text-3xl font-bold mb-6">Contact Us</h3>
-  <p class="max-w-2xl mx-auto text-gray-100 mb-10">
-    Have any questions, suggestions, or feedback about <span class="text-yellow-300 font-semibold">MoneyMate</span>?  
-    We’d love to hear from you! Fill out the form below or reach us through our social profiles.
-  </p>
+    <section id="contact" class="py-20 px-8 bg-white/10 backdrop-blur-md text-center">
+        <h3 class="text-3xl font-bold mb-6">Contact Us</h3>
+        <p class="max-w-2xl mx-auto text-gray-100 mb-10">
+            Have any questions, suggestions, or feedback about <span
+                class="text-yellow-300 font-semibold">MoneyMate</span>?
+            We’d love to hear from you! Fill out the form below or reach us through our social profiles.
+        </p>
 
-  <!-- 📨 Contact Form -->
-  <form action="#" method="post" class="max-w-lg mx-auto bg-white/10 p-6 rounded-2xl space-y-4">
+        <!-- 📨 Contact Form -->
+        <!-- <form action="#" method="post" class="max-w-lg mx-auto bg-white/10 p-6 rounded-2xl space-y-4">
     <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none">
     <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none">
     <textarea rows="4" placeholder="Your Message" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none"></textarea>
     <button type="submit" class="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-white transition">Send Message</button>
-  </form>
+  </form> -->
 
-  <!-- 🔗 Social Links -->
-  <div class="flex justify-center mt-8 space-x-6 text-2xl">
-    <a href="mailto:gadekargovind575@gmail.com" class="hover:text-yellow-300"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://github.com/GovindG9066" target="_blank" class="hover:text-yellow-300"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank" class="hover:text-yellow-300"><i class="fa-brands fa-linkedin"></i></a>
-  </div>
-</section>
+        <!-- 📨 Contact Form -->
+        <form id="contactForm" class="max-w-lg mx-auto bg-white/10 p-6 rounded-2xl space-y-4">
+            <input type="text" name="user_name" placeholder="Your Name"
+                class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none" required>
+
+            <input type="email" name="user_email" placeholder="Your Email"
+                class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none" required>
+
+            <textarea rows="4" name="message" placeholder="Your Message"
+                class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none" required></textarea>
+
+            <button id="email-btn" type="submit"
+                class="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-white transition">
+                Send Message
+            </button>
+        </form>
+
+
+        <!-- 🔗 Social Links -->
+        <div class="flex justify-center mt-8 space-x-6 text-2xl">
+            <a href="mailto:gadekargovind575@gmail.com" class="hover:text-yellow-300"><i
+                    class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/GovindG9066" target="_blank" class="hover:text-yellow-300"><i
+                    class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
+                target="_blank" class="hover:text-yellow-300"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+    </section>
 
 
 
@@ -128,7 +153,9 @@
     <footer id="contact" class="text-center py-6 mt-auto bg-white/10">
         <p>© 2025 MoneyMate | Designed by <span class="text-yellow-300 font-semibold">Govind</span></p>
     </footer>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="{% static 'js/SendEmail.js' %}"></script>
 </body>
 
 </html>
