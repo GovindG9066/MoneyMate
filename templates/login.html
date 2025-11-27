@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login • MoneyMate</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-200 dark:from-slate-950 dark:to-slate-900">
+
+  <main class="container mx-auto px-4 py-10">
+    <div class="mx-auto max-w-md">
+      
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Welcome Back</h1>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Log in to access your account.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white/80 p-6 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/60">
+
+        <!-- {% if messages %}
+          {% for message in messages %}
+            <p class="mb-4 text-center text-sm text-red-500">{{ message }}</p>
+          {% endfor %}
+        {% endif %} -->
+
+        <form method="POST">
+          {% csrf_token %}
+
+          <!-- Email -->
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Email</label>
+            <input name="email" type="email" required
+              class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900 shadow-sm outline-none 
+              focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+              placeholder="you@example.com">
+          </div>
+
+          <!-- Password -->
+          <div class="mb-5">
+            <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Password</label>
+            <input name="password" type="password" required
+              class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900 shadow-sm outline-none 
+              focus:ring-2 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+              placeholder="Enter password">
+          </div>
+
+          <!-- Submit -->
+          <button type="submit"
+            class="w-full rounded-xl bg-slate-900 text-white py-2.5 shadow-lg hover:bg-slate-800 dark:bg-slate-100 
+            dark:text-slate-900 dark:hover:bg-slate-200 transition">
+            Log In
+          </button>
+
+          <p class="mt-4 text-center text-sm text-slate-600 dark:text-slate-300">
+            Don't have an account?
+            <a href="{% url 'register' %}" class="font-medium underline underline-offset-2">Register Now</a>
+          </p>
+
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
