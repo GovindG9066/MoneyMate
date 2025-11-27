@@ -33,26 +33,18 @@ class Expense(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.ImageField(
-        # upload_to='profile_pics/',           #Render.com
-        # default='profile_pics/default.jpg'
-
         upload_to='profile_pics/',
+        default='images/default.jpg',
         blank=True,
         null=True
-
     )
-
-    # profile_image = models.ImageField(
-    #     upload_to='profile_pics/',
-    #     default='default.jpg'
-    # )   
-
     dob = models.DateField(null=True, blank=True)
     phone = models.CharField(max_length=15, blank=True)
     bio = models.TextField(blank=True)
 
     def __str__(self):
         return self.user.username
+
 
 
 class Income(models.Model):
