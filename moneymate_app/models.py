@@ -33,8 +33,13 @@ class Expense(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.ImageField(
+        # upload_to='profile_pics/',           #Render.com
+        # default='profile_pics/default.jpg'
+
         upload_to='profile_pics/',
-        default='profile_pics/default.jpg'
+        blank=True,
+        null=True
+
     )
 
     # profile_image = models.ImageField(
