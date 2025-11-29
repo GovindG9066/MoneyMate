@@ -1,12 +1,25 @@
 
+// // Dark Mode Toggle
+// let btn_container = document.querySelector(".btn-container");
+// let btn_circle = document.querySelector(".btn-circle");
+
+// btn_container.addEventListener("click", () => {
+//     btn_circle.classList.toggle("btnevent");
+//     document.body.classList.toggle("dark");
+// });
+
+
 // Dark Mode Toggle
 let btn_container = document.querySelector(".btn-container");
 let btn_circle = document.querySelector(".btn-circle");
 
 btn_container.addEventListener("click", () => {
     btn_circle.classList.toggle("btnevent");
-    document.body.classList.toggle("dark");
+
+    // IMPORTANT: Dark mode must be applied to <html>
+    document.documentElement.classList.toggle("dark");
 });
+
 
 // Expense Modal Open / Close
 let form_cont = document.querySelector(".form-container");

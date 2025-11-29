@@ -1,3 +1,4 @@
+
 {
   "devDependencies": {
     "tailwindcss": "^3.4.17"
@@ -7,12 +8,15 @@
   },
   "name": "new_moneymate1",
   "version": "1.0.0",
-  "description": "This is my project wher it is use for the user daily money spending and add it in the account of user",
+  "description": "This is my project where it is used for user daily money spending",
   "main": "Chart.js",
   "scripts": {
+    "watch": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC"
 }
+
