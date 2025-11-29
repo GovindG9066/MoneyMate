@@ -6,29 +6,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Expense</title>
+
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 flex justify-center items-center h-screen">
+<body class="bg-gray-100 dark:bg-[#121212] flex justify-center items-center h-screen">
 
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-[400px]">
-        <h2 class="text-2xl font-bold mb-6 text-center text-[#264653]">Edit Expense</h2>
+    <div class="bg-white dark:bg-[#1E1E1E] p-8 rounded-2xl shadow-xl w-[400px]">
+        <h2 class="text-2xl font-bold mb-6 text-center text-[#264653] dark:text-white">
+            Edit Expense
+        </h2>
 
         <form action="" method="POST">
             {% csrf_token %}
 
-            <label class="font-semibold">Title</label>
-            <input type="text" name="title" value="{{ expense.title }}" class="border p-2 w-full rounded mb-4">
+            <label class="font-semibold dark:text-gray-300">Title</label>
+            <input type="text" name="title" value="{{ expense.title }}"
+                class="border p-2 w-full rounded mb-4 dark:bg-[#2A2A2A] dark:text-white dark:border-gray-600">
 
-            <label class="font-semibold">Amount</label>
-            <input type="number" name="amount" value="{{ expense.amount }}" class="border p-2 w-full rounded mb-4">
+            <label class="font-semibold dark:text-gray-300">Amount</label>
+            <input type="number" name="amount" value="{{ expense.amount }}"
+                class="border p-2 w-full rounded mb-4 dark:bg-[#2A2A2A] dark:text-white dark:border-gray-600">
 
-            <label class="font-semibold">Category</label>
-            <!-- <input type="text" name="category" value="{{ expense.category }}" class="border p-2 w-full rounded mb-4"> -->
+            <label class="font-semibold dark:text-gray-300">Category</label>
             <select name="category"
-                class="border rounded w-full p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E9C46A]">
+                class="border p-2 w-full rounded mb-4 dark:bg-[#2A2A2A] dark:text-white dark:border-gray-600">
                 <option>🍔Food</option>
                 <option>🚚Transport</option>
                 <option>🛍️Shopping</option>
@@ -37,20 +40,23 @@
                 <option>❓Other</option>
             </select>
 
-            <label class="font-semibold">Date</label>
+            <label class="font-semibold dark:text-gray-300">Date</label>
             <input type="date" name="date" value="{{ expense.date|date:'Y-m-d' }}"
-                class="border p-2 w-full rounded mb-3" required>
+                class="border p-2 w-full rounded mb-3 dark:bg-[#2A2A2A] dark:text-white dark:border-gray-600" required>
 
-            <button type="submit" class="bg-green-600 w-full text-white px-4 py-2 rounded-lg  transition mt-2">
+            <button type="submit"
+                class="bg-green-600 w-full text-white px-4 py-2 rounded-lg hover:bg-green-700 transition mt-2">
                 Save
             </button>
 
-            <a href="{% url 'home' %}" class="block text-center mt-3 text-red-500 underline hover:text-red-700">
+            <a href="{% url 'home' %}" class="block text-center mt-3 text-red-500 hover:text-red-700 underline">
                 Cancel
             </a>
         </form>
     </div>
 
+    <!-- Dark mode auto-apply -->
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>

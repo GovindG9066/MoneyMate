@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -97,14 +97,6 @@
                 <a href="#Hist" class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer"><i
                         class="fa-solid fa-indian-rupee-sign"></i> Transaction</a>
 
-
-                <!-- <a href="{% url 'profile' %}"
-                    class="mr-5 flex items-center gap-2 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">
-                    <i class="fa-solid fa-user-circle text-xl"></i>
-                    <span>{{ user.first_name|default:user.username }}</span>
-                </a> -->
-
-
                 {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}" class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout
@@ -115,11 +107,7 @@
                 </a>
                 {% endif %}
 
-                <!-- <a href="{% url 'profile' %}" class="flex items-center gap-3 cursor-pointer">
-                    <img src="{{ request.user.profile.profile_image.url }}"
-                        class="w-10 h-10 rounded-full object-cover border-2 border-[#E9C46A]" alt="Profile">
 
-                </a> -->
                 <a href="{% url 'profile' %}" class="flex items-center gap-3 cursor-pointer">
                     <img src="{% if request.user.profile.profile_image %}
                 {{ request.user.profile.profile_image.url }}
