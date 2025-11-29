@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,61 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <body class="relative dark:bg-[#121212] bg-white h-full">
-    <header class="navbar text-white dark:text-[#E0E0E0] body-font bg-[#264653] dark:bg-[#1E1E1E] sticky">
+    <!-- This is the form where i add the property of hidden and flex which applied using the js  -->
+    <div
+        class=" form-container hidden justify-center  w-full h-full add-form absolute z-10 bg-[#264653]/90 dark:bg-[#1B2A41]/80">
+        <form method="POST" action="{% url 'add_expense' %}"
+            class="dark:bg-[#212F45] form-details flex flex-col w-[400px] h-fit mt-5 p-8 rounded-2xl bg-white shadow-lg relative">
+
+            {% csrf_token %}
+
+            <div onclick="exit_form()" id="exitBtn"
+                class="exit w-5 h-5 flex items-center justify-center text-red-700 dark:text-[#E63946] font-bold absolute right-4 top-4 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+            <h2 class="text-2xl font-bold text-[#264653] dark:text-[#F5F5F5] text-center mb-6">Add New Expense</h2>
+
+
+            <label class="font-semibold dark:text-[#A8DADC] mb-1">Title<span class="text-red-600">*</span></label>
+            <input name="title" type="text" placeholder="Expense Title"
+                class="rounded-full border dark:text-gray-200 dark:bg-[#2E3B55] border-[#2A9D8F] dark:border-[#06D6A0] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"
+                required>
+
+            <label class="font-semibold dark:text-[#A8DADC] mb-1">Spend Amount<span
+                    class="text-red-600">*</span></label>
+            <input name="amount" type="number" placeholder="Amount"
+                class="rounded-full border dark:bg-[#2E3B55] dark:text-gray-200 border-[#E76F51] dark:border-[#E63946] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E76F51]"
+                required>
+
+            <label class="font-semibold dark:text-[#A8DADC] mb-1">Category</label>
+            <select name="category"
+                class="rounded-full border dark:text-gray-200 dark:bg-[#2E3B55] border-[#E9C46A] dark:border-[#F4A261] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E9C46A]">
+
+                <option>🍔Food</option>
+                <option>🚚Transport</option>
+                <option>🛍️Shopping</option>
+                <option>📱Recharge</option>
+                <option>✈️Travel</option>
+                <option>❓Other</option>
+
+            </select>
+
+            <label class="font-semibold dark:text-[#A8DADC] mb-1">Date<span class="text-red-600">*</span></label>
+            <input name="date" type="date" required
+                class="rounded-full border dark:bg-[#2E3B55] dark:text-gray-200 border-[#264653] dark:border-[#62B6CB] p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#264653]">
+
+            <button type="submit"
+                class="bg-[#2A9D8F] text-white px-6 py-2 rounded-full dark:bg-[#0FA3B1] hover:bg-[#21867A] transition">
+                Save
+            </button>
+        </form>
+
+
+        <!-- dark:bg-[#1E1E1E] -->
+
+    </div>
+    <header class="navbar text-white dark:text-[#e0e0e0] body-font bg-[#3c8bad] dark:bg-[#02182a] sticky">
         <div class="flex flex-wrap justify-between p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
@@ -32,15 +86,15 @@
                 </svg> -->
 
                 <img src="{% static 'images/cash.png' %}" class="w-10 h-10" alt="My Image">
-                
-            
+
+
                 <span class="ml-3 text-xl text-white dark:text-[#F4F4F4]">MoneyMate</span>
             </a>
             <nav class=" flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer"><i
+                <a class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer"><i
                         class="fa-solid fa-house"></i> Home</a>
 
-                <a href="#Hist" class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer"><i
+                <a href="#Hist" class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer"><i
                         class="fa-solid fa-indian-rupee-sign"></i> Transaction</a>
 
 
@@ -52,11 +106,11 @@
 
 
                 {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">
+                <a href="{% url 'logout' %}" class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </a>
                 {% else %}
-                <a href="{% url 'login' %}" class="mr-5 hover:text-[#E9C46A] dark:hover:text-[#D4A74F] cursor-pointer">
+                <a href="{% url 'login' %}" class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
                     <i class="fa-solid fa-right-to-bracket"></i> Login
                 </a>
                 {% endif %}
@@ -79,69 +133,14 @@
                         class="btn-circle bg-[#2A9D8F] w-5 h-5 border rounded-full transition-all duration-200 ease-in-out cursor-pointer absolute ">
                     </div>
                 </div>
-
-
             </nav>
-
-
 
         </div>
     </header>
 
-    <!-- This is the form where i add the property of hidden and flex which applied using the js  -->
-    <div
-        class=" form-container hidden justify-center  w-full h-full add-form absolute z-10 bg-[#264653]/90 dark:bg-[#1B2A41]/80">
-        <form method="POST" action="{% url 'add_expense' %}"
-            class="dark:bg-[#212F45] form-details flex flex-col w-[400px] mb-10 p-8 rounded-2xl bg-white shadow-lg relative">
-
-            {% csrf_token %}
-
-            <div onclick="exit_form()" id="exitBtn"
-                class="exit w-5 h-5 flex items-center justify-center text-red-700 dark:text-[#E63946] font-bold absolute right-4 top-4 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200">
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-
-            <h2 class="text-2xl font-bold text-[#264653] dark:text-[#F5F5F5] text-center mb-6">Add New Expense</h2>
-
-
-            <label class="font-semibold dark:text-[#A8DADC] mb-1">Title<span class="text-red-600">*</span></label>
-            <input name="title" type="text" placeholder="Expense Title"
-                class="rounded-full border dark:bg-[#2E3B55] border-[#2A9D8F] dark:border-[#06D6A0] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"
-                required>
-
-            <label class="font-semibold dark:text-[#A8DADC] mb-1">Spend Amount<span
-                    class="text-red-600">*</span></label>
-            <input name="amount" type="number" placeholder="Amount"
-                class="rounded-full border dark:bg-[#2E3B55] border-[#E76F51] dark:border-[#E63946] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E76F51]"
-                required>
-
-            <label class="font-semibold dark:text-[#A8DADC] mb-1">Category</label>
-            <select name="category"
-                class="rounded-full border dark:bg-[#2E3B55] border-[#E9C46A] dark:border-[#F4A261] p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#E9C46A]">
-                <option>🍔Food</option>
-                <option>🚚Transport</option>
-                <option>🛍️Shopping</option>
-                <option>📱Recharge</option>
-                <option>✈️Travel</option>
-                <option>❓Other</option>
-            </select>
-
-            <label class="font-semibold dark:text-[#A8DADC] mb-1">Date<span class="text-red-600">*</span></label>
-            <input name="date" type="date" required
-                class="rounded-full border dark:bg-[#2E3B55] border-[#264653] dark:border-[#62B6CB] p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#264653]">
-
-            <button type="submit"
-                class="bg-[#2A9D8F] text-white px-6 py-2 rounded-full dark:bg-[#0FA3B1] hover:bg-[#21867A] transition">
-                Save
-            </button>
-        </form>
-
-
-    </div>
-
-
     <main class="flex items-center flex-col bg-[#F4F4F4] dark:bg-[#121212]">
-        <div class="bg-white dark:bg-[#1A1A1A] shadow-lg rounded-2xl p-5 w-[90%] max-w-lg text-center">
+        <div
+            class="bg-white dark:bg-[#1A1A1A] shadow-lg dark:shadow-slate-900 m-5 rounded-2xl p-5 w-[90%] max-w-lg text-center">
             <h1 class="text-2xl font-bold text-[#264653] dark:text-[#F4F4F4]">Welcome to MoneyMate</h1>
             <p class="text-gray-600 mt-2 dark:text-[#E0E0E0]">Track your expenses easily</p>
             <!-- buttons of the add expence and the view report where i add the expance and the graph for the view report button  -->
@@ -152,7 +151,8 @@
                 <!-- <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg dark:text-[#E0E0E0] hover:bg-[#D4A74F]"><i
                         class="fa-solid fa-chart-simple"></i> View Reports</button> -->
                 <a href="{% url 'reports' %}">
-                    <button class="bg-[#E9C46A] px-4 py-2 rounded-lg">View Reports</button>
+                    <button class="bg-[#e9c46a] hover:bg-[#dbb85d] dark:text-black  px-4 py-2 rounded-lg">View
+                        Reports</button>
                 </a>
 
                 <div id="showChartBtn" class="mt-6 w-full hidden">
@@ -164,50 +164,49 @@
 
             <!-- WALLET SECTION (FULLY BACKEND CONNECTED) -->
             <div class="mt-6">
-                <label class="dark:text-gray-300 text-gray-700 ">
+                <label class="dark:text-gray-300 text-gray-700  ">
                     <i class="fa-solid fa-wallet"></i> Wallet Balance :
                 </label>
-                <br>
+                <br><br>
                 <button onclick="openIncomeForm()"
                     class="bg-[#2A9D8F] text-white px-4 py-2 rounded-md hover:bg-[#21867A] transition shadow-md rgba(42,157,143,0.4)">
-                    + Add Money
+                    <i class="fa-solid fa-plus"></i> Add Money
                 </button>
 
 
-                <div id="incomeModal"
-                    class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+                <div id="incomeModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
 
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl w-full max-w-md shadow-2xl animate-slide-up">
+                    <div class="bg-white dark:bg-gray-800 p-6 m-5 rounded-2xl w-[40%] shadow-2xl animate-slide-up">
 
-                        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-5 text-center">Add Money</h2>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2 text-center">Add Money</h2>
 
                         <form method="POST" action="{% url 'add_income' %}">
                             {% csrf_token %}
 
                             <!-- Amount -->
                             <label class="block text-gray-700 dark:text-gray-300 font-semibold">Amount</label>
-                            <input name="amount" type="number" min="1" class="w-full p-3 mt-1 rounded-xl bg-gray-100 border border-gray-300 
+                            <input name="amount" type="number" min="1" placeholder="Amount" class="w-full p-2 mt-1 rounded-xl bg-gray-100 border border-gray-300 
                        focus:border-[#2A9D8F] focus:ring-2 focus:ring-[#2A9D8F]/40 
-                       dark:bg-gray-700 dark:text-white dark:border-gray-600 mb-4" required>
+                       dark:bg-gray-700 dark:text-white dark:border-gray-600 mb-3" required>
 
                             <!-- Source -->
                             <label class="block text-gray-700 dark:text-gray-300 font-semibold">Source</label>
-                            <input name="source" type="text" placeholder="Ex: Mom, Salary, Gift" class="w-full p-3 mt-1 rounded-xl bg-gray-100 border border-gray-300
+                            <input name="source" type="text" placeholder="Ex: Mom, Salary, Gift" class="w-full p-2 mt-1 rounded-xl bg-gray-100 border border-gray-300
                        focus:border-[#2A9D8F] focus:ring-2 focus:ring-[#2A9D8F]/40
-                       dark:bg-gray-700 dark:text-white dark:border-gray-600 mb-4" required>
+                       dark:bg-gray-700 dark:text-white dark:border-gray-600 mb-3" required>
 
                             <!-- Date -->
                             <label class="block text-gray-700 dark:text-gray-300 font-semibold">Date</label>
-                            <input name="date" type="date" class="w-full p-3 mt-1 rounded-xl bg-gray-100 border border-gray-300 
+                            <input name="date" type="date" class="w-full p-2 mt-1 rounded-xl bg-gray-100 border border-gray-300 
                        focus:border-[#2A9D8F] focus:ring-2 focus:ring-[#2A9D8F]/40
-                       dark:bg-gray-700 dark:text-white dark:border-gray-600 mb-4" required>
+                       dark:bg-gray-700 dark:text-white dark:border-gray-600 mb-3" required>
 
                             <!-- Description -->
                             <label class="block text-gray-700 dark:text-gray-300 font-semibold">Description
                                 (Optional)</label>
-                            <textarea name="description" rows="2" class="w-full p-3 mt-1 rounded-xl bg-gray-100 border border-gray-300
+                            <textarea name="description" rows="2" class="w-full p-2 mt-1 rounded-xl bg-gray-100 border border-gray-300
                        focus:border-[#2A9D8F] focus:ring-2 focus:ring-[#2A9D8F]/40
-                       dark:bg-gray-700 dark:text-white dark:border-gray-600 mb-4"></textarea>
+                       dark:bg-gray-700 dark:text-white dark:border-gray-600 mb-3"></textarea>
 
                             <div class="flex justify-between mt-4 gap-4">
 
@@ -271,11 +270,12 @@
             </div>
         </div>
 
-        <div id="Hist" class="border w-[70%] my-8 rounded-xl flex flex-col shadow shadow-gray-300 p-3">
-            <h2 class="text-left pl-5 font-bold text-2xl text-sky-600">History</h2>
+        <!-- History  -->
+        <div id="Hist" class="border w-[80%] my-8 rounded-xl flex flex-col shadow shadow-gray-300 p-3">
+            <h2 class="text-left pl-5 font-bold text-2xl mb-2 text-sky-600">History</h2>
 
             <div id="history-container"
-                class="border border-purple-800 dark:border-[#5A5A5A] my-5 mx-5 rounded-xl flex flex-col gap-3 p-3 dark:bg-black">
+                class="border border-purple-800 dark:border-[#5A5A5A] my-1 mx-2 rounded-xl flex flex-col gap-3 p-3 dark:bg-black">
 
                 <!-- EXPENSE LIST -->
                 {% for e in expenses %}
@@ -283,7 +283,7 @@
                     class="border border-gray-300 rounded-lg p-3 shadow dark:bg-black bg-white flex justify-between items-center">
 
                     <div class="flex w-[70%] justify-start dark:bg-black">
-                        <h2 class="font-bold text-lg text-[#264653] dark:text-white w-[30%] dark:bg-slate-600">{{ e.title }}</h2>
+                        <h2 class="font-bold text-lg text-[#264653] dark:text-red-600 w-[30%]">{{e.title }}</h2>
                         <p class="text-gray-600 w-[30%] dark:text-white">{{ e.category }}</p>
                         <p class="text-gray-500 dark:text-white">{{ e.date }}</p>
                     </div>

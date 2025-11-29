@@ -9,56 +9,47 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-gray-100 dark:bg-[#121212] p-5">
+<body class="bg-[#F4F4F4] dark:bg-[#1A1A1A] p-5 transition-all duration-300">
+
     <!-- EXIT BUTTON -->
     <a href="{% url 'home' %}" class="absolute top-5 right-5 text-red-600 hover:text-red-700 text-3xl font-bold">
         <i class="fa-solid fa-xmark"></i>
     </a>
 
-
-
-    <h1 class="text-center text-3xl font-bold text-[#264653] dark:text-white mb-8">
+    <h1 class="text-center text-3xl font-bold text-[#264653] dark:text-[#F4F4F4] mb-10">
         Expense & Income Reports
     </h1>
 
-
     <div class="max-w-4xl mx-auto space-y-10">
 
-
         <!-- Doughnut -->
-        <div class="mx-auto bg-white dark:bg-gray-800 p-6 rounded-xl shadow w-full max-w-xl">
-            <h2 class="text-xl font-semibold dark:text-white mb-3">Income vs Expense</h2>
+        <div class="mx-auto bg-white dark:bg-[#2A2A2A] p-6 rounded-xl shadow w-full max-w-xl transition-all duration-300">
+            <h2 class="text-xl font-semibold dark:text-[#F4F4F4] mb-3">Income vs Expense</h2>
             <div class="relative h-[260px]">
                 <canvas id="doughnutChart"></canvas>
             </div>
         </div>
-        <br>
 
         <!-- Category Bar -->
-        <div class="mx-auto bg-white dark:bg-gray-800 p-6 rounded-xl shadow w-full max-w-xl">
-            <h2 class="text-xl font-semibold dark:text-white mb-3">Category-wise Expense</h2>
+        <div class="mx-auto bg-white dark:bg-[#2A2A2A] p-6 rounded-xl shadow w-full max-w-xl transition-all duration-300">
+            <h2 class="text-xl font-semibold dark:text-[#F4F4F4] mb-3">Category-wise Expense</h2>
             <div class="relative h-[260px]">
                 <canvas id="categoryBar"></canvas>
             </div>
         </div>
-        <br>
 
         <!-- Monthly Line -->
-        <div class="mx-auto bg-white dark:bg-gray-800 p-6 rounded-xl shadow w-full max-w-xl">
-            <h2 class="text-xl font-semibold dark:text-white mb-3">Monthly Trend (6 Months)</h2>
+        <div class="mx-auto bg-white dark:bg-[#2A2A2A] p-6 rounded-xl shadow w-full max-w-xl transition-all duration-300 mb-10">
+            <h2 class="text-xl font-semibold dark:text-[#F4F4F4] mb-3">Monthly Trend (6 Months)</h2>
             <div class="relative h-[260px]">
                 <canvas id="lineChart"></canvas>
             </div>
         </div>
-        <br>
 
     </div>
-
 
     <script>
         /* ================ Doughnut Chart ================ */
@@ -68,61 +59,62 @@
                 labels: ["Income", "Expense"],
                 datasets: [{
                     data: [{{ total_income }}, {{ total_expense }}],
-            backgroundColor: ["#2A9D8F", "#E76F51"],
-            borderWidth: 2
-        }]
-    },
+                    backgroundColor: ["#2A9D8F", "#E76F51"],
+                    borderWidth: 2
+                }]
+            },
             options: {
-            maintainAspectRatio: false,
-            cutout: "60%",
-            plugins: { legend: { position: "top" } }
-        }
-});
+                maintainAspectRatio: false,
+                cutout: "60%",
+                plugins: { legend: { position: "top" } }
+            }
+        });
 
         /* ================ Category Bar Chart ================ */
         new Chart(document.getElementById("categoryBar"), {
             type: "bar",
             data: {
-                labels: {{ category_labels| safe }},
-            datasets: [{
-                label: "Amount",
-                data: {{ category_values| safe }},
-            backgroundColor: "#264653"
-        }]
-    },
+                labels: {{ category_labels | safe }},
+                datasets: [{
+                    label: "Amount",
+                    data: {{ category_values | safe }},
+                    backgroundColor: "#264653"
+                }]
+            },
             options: {
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } }
-        }
-});
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
 
         /* ================ Monthly Line Chart ================ */
         new Chart(document.getElementById("lineChart"), {
             type: "line",
             data: {
-                labels: {{ month_labels| safe }},
-            datasets: [
-            {
-                label: "Income",
-                borderColor: "#2A9D8F",
-                backgroundColor: "#2A9D8F",
-                data: {{ income_monthly| safe }},
-            tension: 0.3
+                labels: {{ month_labels | safe }},
+                datasets: [
+                    {
+                        label: "Income",
+                        borderColor: "#2A9D8F",
+                        backgroundColor: "#2A9D8F",
+                        data: {{ income_monthly | safe }},
+                        tension: 0.3
+                    },
+                    {
+                        label: "Expense",
+                        borderColor: "#E76F51",
+                        backgroundColor: "#E76F51",
+                        data: {{ expense_monthly | safe }},
+                        tension: 0.3
+                    }
+                ]
             },
-            {
-                label: "Expense",
-                borderColor: "#E76F51",
-                backgroundColor: "#E76F51",
-                data: {{ expense_monthly| safe }},
-            tension: 0.3
-            }
-        ]
-    },
-            options: {
-            maintainAspectRatio: false
-        }
-});
+            options: { maintainAspectRatio: false }
+        });
     </script>
+
+    <!-- Dark mode script -->
+    <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 

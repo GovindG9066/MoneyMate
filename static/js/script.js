@@ -8,17 +8,45 @@
 //     document.body.classList.toggle("dark");
 // });
 
+// 2nd Working Code
+
+// // Dark Mode Toggle
+// let btn_container = document.querySelector(".btn-container");
+// let btn_circle = document.querySelector(".btn-circle");
+
+// btn_container.addEventListener("click", () => {
+//     btn_circle.classList.toggle("btnevent");
+
+//     // IMPORTANT: Dark mode must be applied to <html>
+//     document.documentElement.classList.toggle("dark");
+// });
 
 // Dark Mode Toggle
 let btn_container = document.querySelector(".btn-container");
 let btn_circle = document.querySelector(".btn-circle");
 
-btn_container.addEventListener("click", () => {
+// --- Apply previous theme on page load ---
+if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+    if (btn_circle) btn_circle.classList.add("btnevent");
+}
+
+// --- Toggle theme on click ---
+btn_container?.addEventListener("click", () => {
     btn_circle.classList.toggle("btnevent");
 
-    // IMPORTANT: Dark mode must be applied to <html>
+    // Toggle dark mode on HTML tag (Tailwind requirement)
     document.documentElement.classList.toggle("dark");
+
+    // Save preference
+    if (document.documentElement.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
 });
+
+
 
 
 // Expense Modal Open / Close
