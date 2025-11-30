@@ -19,7 +19,7 @@
 <body class="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white min-h-screen flex flex-col">
 
     <!-- 🌟 Navbar -->
-    <header class="flex items-center justify-between px-4 md:px-8 py-4 bg-white/10 backdrop-blur-lg shadow-lg relative">
+    <header class="flex items-center justify-between px-2 md:px-8 py-2 bg-white/10 backdrop-blur-lg shadow-lg relative">
 
     <!-- Mobile Menu Button -->
     <button id="menuBtn" class="md:hidden text-2xl text-white">
@@ -32,9 +32,9 @@
     </h1>
 
     <!-- Right Buttons (always right aligned) -->
-    <div class="flex space-x-2 md:space-x-3">
+    <div class="flex sm:flex-row flex-col space-y-1 space-x-2 md:space-x-3">
         <a href="{% url 'login' %}"
-            class="px-2 sm:px-3 py-1 sm:py-2 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-yellow-300 hover:text-black transition text-sm sm:text-base">
+            class="hidden sm:flex px-2 sm:px-3 py-1 sm:py-2 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-yellow-300 hover:text-black transition text-sm sm:text-base">
             Login
         </a>
 
