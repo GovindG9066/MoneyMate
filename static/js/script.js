@@ -1,25 +1,39 @@
+ const menuBtn = document.getElementById("menuBtn");
+    const sideMenu = document.getElementById("sideMenu");
+    const closeMenu = document.getElementById("closeMenu");
 
-// // Dark Mode Toggle
-// let btn_container = document.querySelector(".btn-container");
-// let btn_circle = document.querySelector(".btn-circle");
+    menuBtn.addEventListener("click", () => {
+        sideMenu.classList.remove("-translate-x-full");
+    });
 
-// btn_container.addEventListener("click", () => {
-//     btn_circle.classList.toggle("btnevent");
-//     document.body.classList.toggle("dark");
-// });
+    closeMenu.addEventListener("click", () => {
+        sideMenu.classList.add("-translate-x-full");
+          });
 
-// 2nd Working Code
 
-// // Dark Mode Toggle
-// let btn_container = document.querySelector(".btn-container");
-// let btn_circle = document.querySelector(".btn-circle");
 
-// btn_container.addEventListener("click", () => {
-//     btn_circle.classList.toggle("btnevent");
 
-//     // IMPORTANT: Dark mode must be applied to <html>
-//     document.documentElement.classList.toggle("dark");
-// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Dark Mode Toggle
 let btn_container = document.querySelector(".btn-container");
@@ -45,7 +59,6 @@ btn_container?.addEventListener("click", () => {
         localStorage.setItem("theme", "light");
     }
 });
-
 
 
 

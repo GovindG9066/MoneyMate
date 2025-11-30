@@ -12,27 +12,75 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 
 <body class="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white min-h-screen flex flex-col">
 
     <!-- 🌟 Navbar -->
-    <header class="flex justify-between items-center px-8 py-4 bg-white/10 backdrop-blur-lg shadow-lg">
-        <h1 class="text-2xl font-bold tracking-wide">💸 MoneyMate</h1>
-        <nav class="space-x-6">
-            <a href="#features" class="hover:text-yellow-300">Features</a>
-            <a href="#about" class="hover:text-yellow-300">About</a>
-            <a href="#contact" class="hover:text-yellow-300">Contact</a>
-        </nav>
-        <div class="space-x-3">
-            <a href="{% url 'login' %}"
-                class="px-4 py-2 bg-white text-indigo-600 font-semibold rounded-xl hover:bg-yellow-300 hover:text-black transition">Login</a>
-            <a href="{% url 'register' %}"
-                class="px-4 py-2 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-white transition">Sign
-                Up</a>
-        </div>
-    </header>
+    <header class="flex items-center justify-between px-4 md:px-8 py-4 bg-white/10 backdrop-blur-lg shadow-lg relative">
+
+    <!-- Mobile Menu Button -->
+    <button id="menuBtn" class="md:hidden text-2xl text-white">
+        ☰
+    </button>
+
+    <!-- Logo Centered -->
+    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold tracking-wide absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0">
+        💸 MoneyMate
+    </h1>
+
+    <!-- Right Buttons (always right aligned) -->
+    <div class="flex space-x-2 md:space-x-3">
+        <a href="{% url 'login' %}"
+            class="px-2 sm:px-3 py-1 sm:py-2 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-yellow-300 hover:text-black transition text-sm sm:text-base">
+            Login
+        </a>
+
+        <a href="{% url 'register' %}"
+            class="px-2 sm:px-3 py-1 sm:py-2 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-white transition text-sm sm:text-base">
+            Sign Up
+        </a>
+    </div>
+</header>
+
+<!-- Slide-In Side Menu -->
+<nav id="sideMenu"
+    class="fixed top-0 left-0 h-full w-64 bg-black/90 backdrop-blur-xl text-white transform -translate-x-full transition-transform duration-300 z-50 md:hidden">
+
+    <div class="p-4 flex justify-between items-center border-b border-white/20">
+        <h2 class="text-xl font-semibold">Menu</h2>
+        <button id="closeMenu" class="text-3xl">×</button>
+    </div>
+
+    <ul class="flex flex-col space-y-6 p-6 text-lg">
+        <li><a href="#features" class="hover:text-yellow-300">Features</a></li>
+        <li><a href="#about" class="hover:text-yellow-300">About</a></li>
+        <li><a href="#contact" class="hover:text-yellow-300">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex md:m-auto space-x-10 text-lg mt-4 md:mt-5">
+
+    <a href="#features"
+        class="slide-btn border border-transparent px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg hover:text-black">
+        <span>Features</span>
+    </a>
+
+    <a href="#about"
+        class="slide-btn border border-transparent px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg hover:text-black">
+        <span>About</span>
+    </a>
+
+    <a href="#contact"
+        class="slide-btn border border-transparent px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg hover:text-black">
+        <span>Contact</span>
+    </a>
+
+</nav>
+
 
     <!-- 💡 Hero Section -->
     <section
@@ -54,7 +102,7 @@
             </div>
         </div>
 
-        <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+        <div class="md:w-1/2 mt-24 md:mt-0 flex justify-center">
             <img src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png" alt="Finance Illustration"
                 class="w-80 md:w-96 drop-shadow-2xl animate-bounce">
         </div>
@@ -111,15 +159,6 @@
                 class="text-yellow-300 font-semibold">MoneyMate</span>?
             We’d love to hear from you! Fill out the form below or reach us through our social profiles.
         </p>
-
-        <!-- 📨 Contact Form -->
-        <!-- <form action="#" method="post" class="max-w-lg mx-auto bg-white/10 p-6 rounded-2xl space-y-4">
-    <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none">
-    <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none">
-    <textarea rows="4" placeholder="Your Message" class="w-full p-3 rounded-lg bg-white/20 placeholder-gray-200 focus:outline-none"></textarea>
-    <button type="submit" class="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-white transition">Send Message</button>
-  </form> -->
-
         <!-- 📨 Contact Form -->
         <form id="contactForm" class="max-w-lg mx-auto bg-white/10 p-6 rounded-2xl space-y-4">
             <input type="text" name="user_name" placeholder="Your Name"
@@ -152,10 +191,13 @@
 
 
     <!-- 📞 Footer -->
-    <footer id="contact" class="text-center py-6 mt-auto bg-white/10">
-        <p>© 2025 MoneyMate | Designed by <span class="text-yellow-300 font-semibold">Govind</span></p>
+    <footer id="contact" class="md:flex justify-center text-center py-6 mt-auto bg-white/10">
+        <p class="hidden md:flex" >© 2025 MoneyMate | Designed by <span class="text-yellow-300 font-semibold"> Govind/Pradeep</span></p>
+        <p class="md:hidden mx-auto">© 2025 MoneyMate | Designed by</p>
+        <p class="md:hidden mx-auto"><span class="text-yellow-300 font-semibold"> Govind/Pradeep</span></p>
     </footer>
-    
+
+    <script src="{% static 'js/script.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="{% static 'js/SendEmail.js' %}"></script>
 </body>
