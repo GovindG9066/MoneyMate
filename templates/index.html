@@ -20,7 +20,7 @@
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
 </head>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 <body class="relative dark:bg-[#121212] bg-white lg:h-full">
     <!-- This is the form where i add the property of hidden and flex which applied using the js  -->
@@ -137,8 +137,7 @@
                 <button class="add-spend bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-[#21867A]"
                     onclick="add_expense()">Add Expense</button>
 
-                <!-- <button class="bg-[#E9C46A] text-black px-4 py-2 rounded-lg dark:text-[#E0E0E0] hover:bg-[#D4A74F]"><i
-                        class="fa-solid fa-chart-simple"></i> View Reports</button> -->
+            
                 <a href="{% url 'reports' %}">
                     <button class="bg-[#e9c46a] hover:bg-[#dbb85d] dark:text-black  px-4 py-2 rounded-lg">View
                         Reports</button>
@@ -373,9 +372,7 @@
     </main>
 
     <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/Chart.js' %}"></script>
-    <!-- <script src="script.js"></script>
-    <script src="Chart.js"></script> -->
+    
     <script>
         function openIncomeForm() {
             document.getElementById("incomeModal").classList.remove("hidden");
