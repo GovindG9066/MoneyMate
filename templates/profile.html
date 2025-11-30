@@ -31,8 +31,7 @@
 
         <!-- Profile Image -->
         <div class="flex flex-col items-center">
-            <!-- <img src="{% if profile.profile_image %}{{ profile.profile_image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}"
-                class="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-md"> -->
+            
             <img src="{% if profile.profile_image and profile.profile_image.name %}{{ profile.profile_image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}"
                 class="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-md">
 
