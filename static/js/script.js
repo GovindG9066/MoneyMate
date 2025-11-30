@@ -1,88 +1,93 @@
- const menuBtn = document.getElementById("menuBtn");
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =========================================
+       SLIDE MENU (Mobile)
+    ========================================== */
+    const menuBtn = document.getElementById("menuBtn");
     const sideMenu = document.getElementById("sideMenu");
     const closeMenu = document.getElementById("closeMenu");
 
-    menuBtn.addEventListener("click", () => {
-        sideMenu.classList.remove("-translate-x-full");
+    menuBtn?.addEventListener("click", () => {
+        sideMenu?.classList.remove("-translate-x-full");
     });
 
-    closeMenu.addEventListener("click", () => {
-        sideMenu.classList.add("-translate-x-full");
-          });
+    closeMenu?.addEventListener("click", () => {
+        sideMenu?.classList.add("-translate-x-full");
+    });
+
+    // Click on empty area closes menu
+    sideMenu?.addEventListener("click", (e) => {
+        if (e.target.id === "sideMenu") {
+            sideMenu.classList.add("-translate-x-full");
+        }
+    });
 
 
 
+    /* =========================================
+       DARK MODE (One final clean version)
+    ========================================== */
+/* ------------------------- DARK MODE (SYNC ALL TOGGLES) ------------------------- */
 
+const btn_containers = document.querySelectorAll(".btn-container");
+const btn_circles = document.querySelectorAll(".btn-circle");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Dark Mode Toggle
-let btn_container = document.querySelector(".btn-container");
-let btn_circle = document.querySelector(".btn-circle");
-
-// --- Apply previous theme on page load ---
-if (localStorage.getItem("theme") === "dark") {
+// Apply saved theme on load
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
     document.documentElement.classList.add("dark");
-    if (btn_circle) btn_circle.classList.add("btnevent");
+
+    // Move ALL toggle circles to active position
+    btn_circles.forEach(c => c.classList.add("btnevent"));
+} else {
+    btn_circles.forEach(c => c.classList.remove("btnevent"));
 }
 
-// --- Toggle theme on click ---
-btn_container?.addEventListener("click", () => {
-    btn_circle.classList.toggle("btnevent");
+// Function to SYNC all toggles
+function syncAllToggles(isDark) {
+    btn_circles.forEach(c => {
+        if (isDark) c.classList.add("btnevent");
+        else c.classList.remove("btnevent");
+    });
+}
 
-    // Toggle dark mode on HTML tag (Tailwind requirement)
-    document.documentElement.classList.toggle("dark");
+// Add click listener to ALL toggle buttons
+btn_containers.forEach(container => {
+    container.addEventListener("click", () => {
 
-    // Save preference
-    if (document.documentElement.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-    } else {
-        localStorage.setItem("theme", "light");
-    }
+        // Toggle theme
+        const isDark = document.documentElement.classList.toggle("dark");
+
+        // Save theme
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+
+        // Sync UI on ALL toggles
+        syncAllToggles(isDark);
+    });
 });
 
 
 
 
-// Expense Modal Open / Close
-let form_cont = document.querySelector(".form-container");
-let spend = document.querySelector(".add-spend");
-let exit = document.getElementById("exitBtn");
 
-function add_expense() {
-    spend.addEventListener("click", () => {
+    /* =========================================
+       EXPENSE MODAL
+    ========================================== */
+    let form_cont = document.querySelector(".form-container");
+    let spend = document.querySelector(".add-spend");
+    let exit = document.getElementById("exitBtn");
+
+    function openExpenseForm() {
         form_cont.classList.remove("hidden");
         form_cont.classList.add("flex");
-    });
-}
+    }
 
-function exit_form() {
-    form_cont.classList.remove("flex");
-    form_cont.classList.add("hidden");
-}
+    function closeExpenseForm() {
+        form_cont.classList.remove("flex");
+        form_cont.classList.add("hidden");
+    }
 
-if (exit) {
-    exit.addEventListener("click", exit_form);
-}
+    spend?.addEventListener("click", openExpenseForm);
+    exit?.addEventListener("click", closeExpenseForm);
 
-add_expense();
-
+});

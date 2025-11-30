@@ -5,6 +5,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Expense, Wallet
 from .models import Expense, Wallet, Income, Profile
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from django.http import HttpResponse
 
 
 
@@ -277,16 +281,19 @@ def profile_view(request):
 
     if request.method == "POST":
 
-        # Update only editable fields
+        # ------- Update User basic info -------
         user.first_name = request.POST.get("first_name", user.first_name)
         user.last_name  = request.POST.get("last_name", user.last_name)
-
-
         user.save()
 
-        # Profile info
-        profile.dob = request.POST.get("dob", profile.dob)
+        # ------- DOB FIX (allow empty value) -------
+        dob = request.POST.get("dob")    # this may be "" if empty
+        if dob:
+            profile.dob = dob           # valid date
+        else:
+            profile.dob = None          # empty → no error
 
+        # ------- Profile Photo update -------
         if request.FILES.get("profile_image"):
             profile.profile_image = request.FILES["profile_image"]
 
@@ -295,6 +302,72 @@ def profile_view(request):
         return redirect("home")
 
     return render(request, "profile.html", {"profile": profile})
+
+
+
+
+@login_required
+def download_history_pdf(request):
+    expenses = Expense.objects.filter(user=request.user).order_by('-date')
+    incomes = Income.objects.filter(user=request.user).order_by('-date')
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="MoneyMate_History.pdf"'
+
+    p = canvas.Canvas(response, pagesize=A4)
+    width, height = A4
+
+    y = height - 50
+
+    # HEADER
+    p.setFont("Helvetica-Bold", 20)
+    p.setFillColor(colors.HexColor("#264653"))  # blue heading
+    p.drawString(160, y, "MoneyMate Transaction Report")
+
+    y -= 40
+    p.setFont("Helvetica-Bold", 14)
+    p.setFillColor(colors.darkblue)
+    p.drawString(50, y, "EXPENSES:")
+    y -= 20
+
+    p.setFont("Helvetica", 12)
+
+    # EXPENSES LIST (RED)
+    for e in expenses:
+        p.setFillColor(colors.red)  # Expense = RED
+        p.drawString(50, y, f"{e.date}  |  {e.title} ({e.category})")
+        p.drawString(350, y, f"-₹{e.amount}")
+
+        y -= 20
+        if y < 50:
+            p.showPage()
+            y = height - 50
+
+    # SPACE
+    y -= 20
+
+    # INCOME HEADING
+    p.setFont("Helvetica-Bold", 14)
+    p.setFillColor(colors.green)
+    p.drawString(50, y, "INCOMES:")
+    y -= 20
+
+    p.setFont("Helvetica", 12)
+
+    # INCOME LIST (GREEN)
+    for i in incomes:
+        p.setFillColor(colors.green)  # Income = GREEN
+        p.drawString(50, y, f"{i.date}  |  {i.source}")
+        p.drawString(350, y, f"+₹{i.amount}")
+
+        y -= 20
+        if y < 50:
+            p.showPage()
+            y = height - 50
+
+    p.showPage()
+    p.save()
+    return response
 
 
 # Charts

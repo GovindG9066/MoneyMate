@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoneyMate</title>
-    <!-- <link rel="stylesheet" href="./src/output.css"> -->
+
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -27,7 +27,7 @@
     <div
         class=" form-container hidden justify-center w-full h-full add-form absolute z-10 bg-[#264653]/90 dark:bg-[#1B2A41]/80">
         <form method="POST" action="{% url 'add_expense' %}"
-            class="dark:bg-[#212F45] form-details flex flex-col w-[400px] h-fit mt-5 p-8 rounded-2xl bg-white shadow-lg relative">
+            class="dark:bg-[#212F45] form-details flex flex-col w-[70%] md:w-[40%]  h-fit mt-5 p-8 rounded-2xl bg-white shadow-lg relative">
 
             {% csrf_token %}
 
@@ -77,69 +77,141 @@
         <!-- dark:bg-[#1E1E1E] -->
 
     </div>
-    <header class="navbar text-white dark:text-[#e0e0e0] body-font bg-[#3c8bad] dark:bg-[#02182a] sticky">
-        <div class="flex flex-wrap justify-between p-5 flex-col md:flex-row items-center">
-            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-                    viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg> -->
 
+
+    <header class="navbar text-white dark:text-[#e0e0e0] body-font bg-[#3c8bad] dark:bg-[#02182a] sticky top-0 z-50">
+
+        <div class="flex items-center justify-between px-4 py-4 relative w-full">
+
+            <!-- LEFT: Menu Button (Mobile only) -->
+            <button id="menuBtn" class="md:hidden text-3xl text-white">
+                ☰
+            </button>
+
+            <!-- CENTER: Logo + Name -->
+            <a class="flex title-font font-medium items-center gap-2 mx-auto md:mx-0">
                 <img src="{% static 'images/cash.png' %}" class="w-10 h-10" alt="My Image">
-
-
-                <span class="ml-3 text-xl text-white dark:text-[#F4F4F4]">MoneyMate</span>
+                <span class="text-xl text-white dark:text-[#F4F4F4] font-semibold">MoneyMate</span>
             </a>
-            <nav class=" flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer"><i
-                        class="fa-solid fa-house"></i> Home</a>
 
-                <a href="#Hist" class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer"><i
-                        class="fa-solid fa-indian-rupee-sign"></i> Transaction</a>
+            <!-- RIGHT: Profile (Mobile + Desktop) -->
+            <a href="{% url 'profile' %}" class="md:hidden flex items-center cursor-pointer">
+                <img src="{% if request.user.profile.profile_image %}
+                {{ request.user.profile.profile_image.url }}
+              {% else %}
+                /media/default.jpg
+              {% endif %}" class="w-10 h-10 rounded-full object-cover border border-white">
+            </a>
+
+            <!-- DESKTOP NAV -->
+            <nav class="hidden md:flex flex-wrap items-center text-base justify-center gap-5">
+
+                <a href="#Starting" class="hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+
+                <a href="#Hist" class="hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
+                    <i class="fa-solid fa-indian-rupee-sign"></i> Transaction
+                </a>
 
                 {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
+                <a href="{% url 'logout' %}" class="hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </a>
                 {% else %}
-                <a href="{% url 'login' %}" class="mr-5 hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
+                <a href="{% url 'login' %}" class="hover:text-[#F4A261] dark:hover:text-[#D4A74F] cursor-pointer">
                     <i class="fa-solid fa-right-to-bracket"></i> Login
                 </a>
                 {% endif %}
 
-
+                <!-- Profile -->
                 <a href="{% url 'profile' %}" class="flex items-center gap-3 cursor-pointer">
                     <img src="{% if request.user.profile.profile_image %}
-                {{ request.user.profile.profile_image.url }}
-              {% else %}
-                /media/default.jpg
-              {% endif %}" class="w-10 h-10 mr-5 rounded-full object-cover border border-white " alt="Profile">
+                    {{ request.user.profile.profile_image.url }}
+                {% else %}
+                    /media/default.jpg
+                {% endif %}" class="w-10 h-10 rounded-full object-cover border border-white">
                 </a>
 
-                <div class="btn-container w-10 h-5 bg-gray-200 rounded-full border-none cursor-pointer ">
-                    <div
-                        class="btn-circle bg-[#2A9D8F] w-5 h-5 border rounded-full transition-all duration-200 ease-in-out cursor-pointer absolute ">
+                <!-- Dark Mode -->
+                <div class="btn-container relative w-12 h-6 bg-gray-200 rounded-full cursor-pointer">
+                    <div class="btn-circle bg-[#2A9D8F] w-6 h-6 rounded-full transition-all duration-300 ease-in-out">
                     </div>
                 </div>
+
             </nav>
 
         </div>
     </header>
 
+    <nav id="sideMenu" class="fixed top-0 left-0 h-full w-64 bg-black/90 backdrop-blur-xl text-white transform 
+            -translate-x-full transition-transform duration-300 z-50 md:hidden">
+
+        <div class="p-4 flex justify-between items-center border-b border-white/20">
+            <h2 class="text-xl font-semibold">Menu</h2>
+            <button id="closeMenu" class="text-3xl">×</button>
+        </div>
+
+        <ul class="flex flex-col space-y-6 p-6 text-lg">
+            <li><a class="hover:text-yellow-300" href="#Starting">Home</a></li>
+            <li><a class="hover:text-yellow-300" href="#Hist">Transaction</a></li>
+            <li>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="hover:text-yellow-300">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="hover:text-yellow-300">Login</a>
+                {% endif %}
+            </li>
+            <li>
+                <a href="{% url 'profile' %}" class="hover:text-yellow-300">Profile</a>
+            </li>
+        </ul>
+
+        <!-- DARK MODE TOGGLE FOR MOBILE -->
+        <div class="mt-6 border-t border-white/30 px-6 pt-4">
+            <p class="text-sm mb-2 text-gray-300">Appearance</p>
+
+            <div class="flex items-center justify-between">
+
+                <span class="text-white text-lg">Dark Mode</span>
+
+                <div class="btn-container relative w-14 h-7 bg-gray-300 dark:bg-gray-600 rounded-full cursor-pointer">
+                    <div class="btn-circle bg-[#2A9D8F] w-7 h-7 rounded-full transition-all duration-300 ease-in-out">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
     <main class="flex items-center flex-col bg-[#F4F4F4] dark:bg-[#121212]">
-        <div
+        <div id="Starting"
             class="bg-white dark:bg-[#1A1A1A] shadow-lg dark:shadow-slate-900 m-5 rounded-2xl p-5 w-[90%] max-w-lg text-center">
-            <h1 class="text-2xl font-bold text-[#264653] dark:text-[#F4F4F4]">Welcome to MoneyMate</h1>
-            <p class="text-gray-600 mt-2 dark:text-[#E0E0E0]">Track your expenses easily</p>
+            <h1 class="md:text-2xl sm:text-xl text-lg font-bold text-[#264653] dark:text-[#F4F4F4]">Welcome to MoneyMate
+            </h1>
+            <p class="text-gray-600 mt-2 sm:text-lg text-xs dark:text-[#E0E0E0]">Track your expenses easily</p>
             <!-- buttons of the add expence and the view report where i add the expance and the graph for the view report button  -->
             <div class="mt-4">
-                <button class="add-spend bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-[#21867A]"
+                <button
+                    class="add-spend bg-[#2A9D8F] text-white text-sm sm:text-base  px-4 py-2 mb-4 rounded-lg hover:bg-[#21867A]"
                     onclick="add_expense()">Add Expense</button>
 
-            
+
                 <a href="{% url 'reports' %}">
-                    <button class="bg-[#e9c46a] hover:bg-[#dbb85d] dark:text-black  px-4 py-2 rounded-lg">View
+                    <button
+                        class="bg-[#e9c46a] hover:bg-[#dbb85d] text-sm sm:text-base dark:text-black  px-4 py-2 rounded-lg">View
                         Reports</button>
                 </a>
 
@@ -151,20 +223,22 @@
 
 
             <!-- WALLET SECTION (FULLY BACKEND CONNECTED) -->
-            <div class="mt-6">
-                <label class="dark:text-gray-300 text-gray-700  ">
+            <div class="mt-3">
+                <label class="dark:text-gray-300 text-gray-700 sm:text-base text-sm ">
                     <i class="fa-solid fa-wallet"></i> Wallet Balance :
                 </label>
-                <br><br>
+                <br>
                 <button onclick="openIncomeForm()"
-                    class="bg-[#2A9D8F] text-white px-4 py-2 rounded-md hover:bg-[#21867A] transition shadow-md rgba(42,157,143,0.4)">
+                    class="bg-[#2A9D8F] text-white px-4 py-2 mt-2 sm:text-base text-sm rounded-md hover:bg-[#21867A] transition shadow-md rgba(42,157,143,0.4)">
                     <i class="fa-solid fa-plus"></i> Add Money
                 </button>
 
 
-                <div id="incomeModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+                <div id="incomeModal"
+                    class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
 
-                    <div class="bg-white dark:bg-gray-800 p-6 m-5 rounded-2xl w-[40%] shadow-2xl animate-slide-up">
+                    <div
+                        class="bg-white dark:bg-gray-800 p-6 m-5 rounded-2xl sm:w-[60%] xl:w-[40%] w-[70%] shadow-2xl animate-slide-up">
 
                         <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-2 text-center">Add Money</h2>
 
@@ -242,15 +316,15 @@
             <!-- here is the available balance and the total spend  -->
             <div class="flex justify-between items-center mt-6">
                 <div>
-                    <h2 class="text-lg font-semibold dark:text-[#06D6A0]">Available Balance</h2>
-                    <p class="Available-bal text-xl font-bold text-[#2A9D8F] dark:text-[#76C7C0]">
+                    <h2 class="text-sm sm:text-lg font-semibold dark:text-[#06D6A0]">Available Balance</h2>
+                    <p class="Available-bal sm:text-xl text-lg font-bold text-[#2A9D8F] dark:text-[#76C7C0]">
                         ₹{{ wallet.balance }}
                     </p>
                 </div>
                 <div>
-                    <h2 class="text-lg font-semibold dark:text-[#EF476F]
+                    <h2 class="text-sm sm:text-lg font-semibold dark:text-[#EF476F]
                     ">Total Spent</h2>
-                    <p class="money-spend text-xl font-bold text-[#E76F51] dark:text-[#FF6B6B]">
+                    <p class="money-spend sm:text-xl text-lg font-bold text-[#E76F51] dark:text-[#FF6B6B]">
                         ₹{{ total_spent }}
                     </p>
 
@@ -259,63 +333,159 @@
         </div>
 
         <!-- History  -->
-        <div id="Hist" class="border w-[80%] my-8 rounded-xl flex flex-col shadow shadow-gray-300 p-3">
-            <h2 class="text-left pl-5 font-bold text-2xl mb-2 text-sky-600">History</h2>
+        <div id="Hist" class="border relative sm:w-[92%] w-[70%] my-8 rounded-xl flex flex-col shadow shadow-gray-300 p-2">
+            <a href="{% url 'download_history' %}" class="w-fit absolute right-2 bg-blue-600 text-white px-4 py-2 rounded-lg">
+                Download History PDF
+            </a>
 
-            <div id="history-container"
-                class="border border-purple-800 dark:border-[#5A5A5A] my-1 mx-2 rounded-xl flex flex-col gap-3 p-3 dark:bg-black">
+            <h2 class="text-left pl-5 font-bold text-xl md:text-2xl  mb-2 text-sky-600">History</h2>
+
+
+            <div id="history-container" class="w-full max-w-6xl mx-auto mt-4 flex flex-col gap-4 px-3">
 
                 <!-- EXPENSE LIST -->
                 {% for e in expenses %}
-                <div
-                    class="border border-gray-300 rounded-lg p-3 shadow dark:bg-black bg-white flex justify-between items-center">
+                <div class="w-full bg-white dark:bg-[#0c0c0c] border border-gray-300 dark:border-gray-700 
+               rounded-xl overflow-hidden shadow-sm">
 
-                    <div class="flex w-[70%] justify-start dark:bg-black">
-                        <h2 class="font-bold text-lg text-[#264653] dark:text-red-600 w-[30%]">{{e.title }}</h2>
-                        <p class="text-gray-600 w-[30%] dark:text-white">{{ e.category }}</p>
-                        <p class="text-gray-500 dark:text-white">{{ e.date }}</p>
+                    <!-- MOBILE STRIPE STYLE -->
+                    <div class="flex sm:hidden">
+                        <div class="w-2 bg-red-500"></div>
+
+                        <div class="flex-1 p-4 flex items-start gap-3">
+
+                            <!-- Icon -->
+                            <div class="text-3xl">
+                                {% if e.category == "Food" %} 🍔
+                                {% elif e.category == "Shopping" %} 🛍️
+                                {% elif e.category == "Travel" %} 🚗
+                                {% elif e.category == "Bills" %} 💡
+                                {% else %} 💸
+                                {% endif %}
+                            </div>
+
+                            <div class="flex-1">
+                                <h2 class="font-bold text-red-600 dark:text-red-400 text-lg">{{ e.title }}</h2>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">{{ e.category }}</p>
+                                <p class="text-gray-400 dark:text-gray-400 text-xs">{{ e.date }}</p>
+
+                                <div class="flex justify-between items-center mt-2">
+                                    <h3 class="font-bold text-red-600 dark:text-red-400 text-lg">-₹{{ e.amount }}</h3>
+
+                                    <a href="{% url 'edit_expense' e.id %}"
+                                        class="bg-blue-500 text-white px-4 py-1.5 rounded-full hover:bg-blue-600 text-sm">
+                                        Edit
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
-                    <div>
-                        <h3 class="font-bold text-red-600">-₹{{ e.amount }}</h3>
-                    </div>
+                    <!-- DESKTOP ROW STYLE -->
+                    <div class="hidden sm:flex flex-row items-center justify-between px-4 py-3">
 
-                    <!-- EDIT BUTTON -->
-                    <a href="{% url 'edit_expense' e.id %}"
-                        class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
-                        Edit
-                    </a>
+                        <!-- Left cluster -->
+                        <div class="flex items-center gap-3 w-[45%]">
+
+                            <div class="text-3xl">
+                                {% if e.category == "Food" %} 🍔
+                                {% elif e.category == "Shopping" %} 🛍️
+                                {% elif e.category == "Travel" %} 🚗
+                                {% elif e.category == "Bills" %} 💡
+                                {% else %} 💸
+                                {% endif %}
+                            </div>
+
+                            <div>
+                                <h2 class="font-bold text-red-600 dark:text-red-400">{{ e.title }}</h2>
+                                <p class="text-gray-500 dark:text-gray-300 text-sm">{{ e.category }}</p>
+                                <p class="text-gray-400 dark:text-gray-400 text-xs">{{ e.date }}</p>
+                            </div>
+
+                        </div>
+
+                        <!-- Right cluster -->
+                        <div class="flex items-center gap-5">
+
+                            <h3 class="font-bold text-red-600 dark:text-red-400 text-lg">-₹{{ e.amount }}</h3>
+
+                            <a href="{% url 'edit_expense' e.id %}"
+                                class="bg-blue-500 text-white px-4 py-1.5 rounded-full hover:bg-blue-600 text-sm">
+                                Edit
+                            </a>
+
+                        </div>
+
+                    </div>
                 </div>
                 {% endfor %}
+
+
 
 
                 <!-- INCOME LIST -->
                 {% for i in incomes %}
-                <div
-                    class="border border-gray-300 rounded-lg p-3 shadow dark:bg-black bg-white flex justify-between items-center">
+                <div class="w-full bg-white dark:bg-[#0c0c0c] border border-gray-300 dark:border-gray-700 
+               rounded-xl overflow-hidden shadow-sm">
 
-                    <div class="flex w-[70%] justify-start dark:bg-black">
-                        <h2 class="font-bold text-lg text-green-700 dark:text-green-400 w-[30%]">{{ i.source }}</h2>
-                        <p class="text-gray-600 w-[30%] dark:text-white">Income</p>
-                        <p class="text-gray-500 dark:text-white">{{ i.date }}</p>
+                    <!-- MOBILE STRIPE STYLE -->
+                    <div class="flex sm:hidden">
+                        <div class="w-2 bg-green-500"></div>
+
+                        <div class="flex-1 p-4 flex items-start gap-3">
+
+                            <div class="text-3xl">💰</div>
+
+                            <div class="flex-1">
+                                <h2 class="font-bold text-green-700 dark:text-green-400 text-lg">{{ i.source }}</h2>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">Income</p>
+                                <p class="text-gray-400 dark:text-gray-400 text-xs">{{ i.date }}</p>
+
+                                <div class="flex justify-between items-center mt-2">
+                                    <h3 class="font-bold text-green-700 dark:text-green-400 text-lg">+₹{{ i.amount }}
+                                    </h3>
+                                    <span class="text-gray-500 text-sm">—</span>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
-                    <div>
-                        <h3 class="font-bold text-green-600 dark:!text-green-400">+₹{{ i.amount }}</h3>
+                    <!-- DESKTOP ROW STYLE -->
+                    <div class="hidden sm:flex flex-row items-center justify-between px-4 py-3">
+
+                        <!-- Left cluster -->
+                        <div class="flex items-center gap-3 w-[45%]">
+
+                            <div class="text-3xl">💰</div>
+
+                            <div>
+                                <h2 class="font-bold text-green-700 dark:text-green-400">{{ i.source }}</h2>
+                                <p class="text-gray-500 dark:text-gray-300 text-sm">Income</p>
+                                <p class="text-gray-400 dark:text-gray-400 text-xs">{{ i.date }}</p>
+                            </div>
+
+                        </div>
+
+                        <!-- Right cluster -->
+                        <div class="flex items-center gap-5">
+
+                            <h3 class="font-bold text-green-700 dark:text-green-400 text-lg">+₹{{ i.amount }}</h3>
+                            <span class="text-gray-500 text-sm">—</span>
+
+                        </div>
 
                     </div>
 
-                    <!-- No edit for income (optional) -->
-                    <span class="px-3 py-1 text-gray-500 text-sm">—</span>
                 </div>
                 {% endfor %}
 
-
-                {% if not expenses and not incomes %}
-                <p class="text-gray-500 text-center">No history available.</p>
-                {% endif %}
-
             </div>
+
+
+
+
         </div>
 
 
@@ -372,7 +542,7 @@
     </main>
 
     <script src="{% static 'js/script.js' %}"></script>
-    
+
     <script>
         function openIncomeForm() {
             document.getElementById("incomeModal").classList.remove("hidden");
