@@ -99,7 +99,8 @@
                 <img src="{% if request.user.profile.profile_image %}
                 {{ request.user.profile.profile_image.url }}
               {% else %}
-                /media/default.jpg
+                {% static 'images/default.jpg' %}
+
               {% endif %}" class="w-10 h-10 rounded-full object-cover border border-white">
             </a>
 
@@ -129,7 +130,8 @@
                     <img src="{% if request.user.profile.profile_image %}
                     {{ request.user.profile.profile_image.url }}
                 {% else %}
-                    /media/default.jpg
+                    {% static 'images/default.jpg' %}
+
                 {% endif %}" class="w-10 h-10 rounded-full object-cover border border-white">
                 </a>
 
