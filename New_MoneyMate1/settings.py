@@ -32,12 +32,21 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
+import os
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
+
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 
-SENDGRID_API_KEY = "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"
+# API key from .env
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
 DEFAULT_FROM_EMAIL = "gadekargovind575@gmail.com"
+
 
 
 
