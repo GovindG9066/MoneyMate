@@ -104,6 +104,7 @@ def register_view(request):
     return render(request, 'Registration.html')
 
 
+
 # --------------------------------------------
 # Login Logic
 # --------------------------------------------

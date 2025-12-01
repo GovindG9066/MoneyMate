@@ -32,6 +32,15 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+
+SENDGRID_API_KEY = "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"
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+
+DEFAULT_FROM_EMAIL = "gadekargovind575@gmail.com"
+
+
+
 
 
 # Application definition
@@ -63,7 +72,7 @@ ROOT_URLCONF = 'New_MoneyMate1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,6 +102,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 
