@@ -19,19 +19,21 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 
 <body class="relative dark:bg-[#121212] bg-white lg:h-full">
     <!-- This is the form where i add the property of hidden and flex which applied using the js  -->
     <div
-        class=" form-container hidden justify-center w-full h-full add-form absolute z-10 bg-[#264653]/90 dark:bg-[#1B2A41]/80">
-        <form method="POST" action="{% url 'add_expense' %}"
+        class=" form-container hidden justify-center items-center w-full h-full add-form absolute z-50 bg-[#264653]/90 dark:bg-[#1B2A41]/80">
+        <form id="expenseForm" method="POST" action="{% url 'add_expense' %}"
             class="dark:bg-[#212F45] form-details flex flex-col w-[70%] md:w-[40%]  h-fit mt-5 p-8 rounded-2xl bg-white shadow-lg relative">
 
             {% csrf_token %}
 
-            <div onclick="exit_form()" id="exitBtn"
+            <div onclick="closeExpenseForm()" id="exitBtn"
                 class="exit w-5 h-5 flex items-center justify-center text-red-700 dark:text-[#E63946] font-bold absolute right-4 top-4 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200">
                 <i class="fa-solid fa-xmark"></i>
             </div>
@@ -66,6 +68,9 @@
             <label class="font-semibold dark:text-[#A8DADC] mb-1">Date<span class="text-red-600">*</span></label>
             <input name="date" type="date" required
                 class="rounded-full border dark:bg-[#2E3B55] dark:text-gray-200 border-[#264653] dark:border-[#62B6CB] p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#264653]">
+            
+            <input type="hidden" id="availableBalance" value="{{ available_balance }}">
+
 
             <button type="submit"
                 class="bg-[#2A9D8F] text-white px-6 py-2 rounded-full dark:bg-[#0FA3B1] hover:bg-[#21867A] transition">
@@ -136,10 +141,13 @@
                 </a>
 
                 <!-- Dark Mode -->
-                <div class="btn-container relative w-12 h-6 bg-gray-200 rounded-full cursor-pointer">
-                    <div class="btn-circle bg-[#2A9D8F] w-6 h-6 rounded-full transition-all duration-300 ease-in-out">
-                    </div>
-                </div>
+                
+
+                <!-- Second -->
+                <button class="btn-container text-2xl p-2 rounded-full">
+                    <i class="btn-icon fa-solid fa-moon"></i>
+                </button>
+
 
             </nav>
 
@@ -205,10 +213,13 @@
             </h1>
             <p class="text-gray-600 mt-2 sm:text-lg text-xs dark:text-[#E0E0E0]">Track your expenses easily</p>
             <!-- buttons of the add expence and the view report where i add the expance and the graph for the view report button  -->
-            <div class="mt-4">
+            <div class="mt-6 ">
+                <!-- <button
+                    class="add-spend bg-[#2A9D8F] text-white text-sm sm:text-base  px-4 py-2 mb-4 rounded-lg hover:bg-[#21867A]"
+                    onclick="add_expense()">Add Expense</button> -->
                 <button
                     class="add-spend bg-[#2A9D8F] text-white text-sm sm:text-base  px-4 py-2 mb-4 rounded-lg hover:bg-[#21867A]"
-                    onclick="add_expense()">Add Expense</button>
+                    onclick="openExpenseForm()">Add Expense</button>
 
 
                 <a href="{% url 'reports' %}">
@@ -335,8 +346,10 @@
         </div>
 
         <!-- History  -->
-        <div id="Hist" class="border relative sm:w-[92%] w-[70%] my-8 rounded-xl flex flex-col shadow shadow-gray-300 p-2">
-            <a href="{% url 'download_history' %}" class="w-fit absolute right-2 bg-blue-600 text-white px-4 py-2 rounded-lg">
+        <div id="Hist"
+            class="border relative sm:w-[92%] w-[70%] my-8 rounded-xl flex flex-col shadow shadow-gray-300 p-2">
+            <a href="{% url 'download_history' %}"
+                class="w-fit absolute right-2 bg-blue-600 text-white px-4 py-2 rounded-lg">
                 Download History PDF
             </a>
 

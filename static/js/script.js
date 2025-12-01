@@ -1,3 +1,7 @@
+console.log("JS Loaded Successfully");
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
@@ -22,49 +26,83 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // popup msg
+    // popup msg (WORKING VERSION)
+    const form = document.getElementById("expenseForm");
+    if (form) {
+        const amountInput = form.querySelector("input[name='amount']");
+        const available = Number(document.getElementById("availableBalance").value || 0);
+
+        console.log("Available Balance:", available); // Debugging
+
+        form.addEventListener("submit", (e) => {
+            const amount = Number(amountInput.value);
+
+            if (amount > available) {
+                e.preventDefault();
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Insufficient Balance",
+                    html: `Your available balance is <b>₹${available}</b><br>
+                       You are trying to spend <b>₹${amount}</b>.`,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#d33"
+                });
+            }
+        });
+    }
 
 
-    /* =========================================
-       DARK MODE (One final clean version)
-    ========================================== */
-/* ------------------------- DARK MODE (SYNC ALL TOGGLES) ------------------------- */
 
-const btn_containers = document.querySelectorAll(".btn-container");
-const btn_circles = document.querySelectorAll(".btn-circle");
 
-// Apply saved theme on load
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "dark") {
-    document.documentElement.classList.add("dark");
 
-    // Move ALL toggle circles to active position
-    btn_circles.forEach(c => c.classList.add("btnevent"));
-} else {
-    btn_circles.forEach(c => c.classList.remove("btnevent"));
-}
+    // Second
 
-// Function to SYNC all toggles
-function syncAllToggles(isDark) {
-    btn_circles.forEach(c => {
-        if (isDark) c.classList.add("btnevent");
-        else c.classList.remove("btnevent");
+    const btn_containers = document.querySelectorAll(".btn-container");
+    const btn_icons = document.querySelectorAll(".btn-icon");
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+    const isDark = savedTheme === "dark";
+
+    if (isDark) {
+        document.documentElement.classList.add("dark");
+        btn_icons.forEach(i => {
+            i.classList.remove("fa-moon");
+            i.classList.add("fa-sun", "text-yellow-300");
+        });
+    } else {
+        btn_icons.forEach(i => {
+            i.classList.remove("fa-sun", "text-yellow-300");
+            i.classList.add("fa-moon");
+        });
+    }
+
+    // SYNC all icons function
+    function syncAllIcons(isDarkMode) {
+        btn_icons.forEach(i => {
+            if (isDarkMode) {
+                i.classList.remove("fa-moon");
+                i.classList.add("fa-sun", "text-yellow-300");
+            } else {
+                i.classList.remove("fa-sun", "text-yellow-300");
+                i.classList.add("fa-moon");
+            }
+        });
+    }
+
+    // Handle clicks
+    btn_containers.forEach(container => {
+        container.addEventListener("click", () => {
+            const nowDark = document.documentElement.classList.toggle("dark");
+
+            localStorage.setItem("theme", nowDark ? "dark" : "light");
+
+            // Sync all toggle icons
+            syncAllIcons(nowDark);
+        });
     });
-}
-
-// Add click listener to ALL toggle buttons
-btn_containers.forEach(container => {
-    container.addEventListener("click", () => {
-
-        // Toggle theme
-        const isDark = document.documentElement.classList.toggle("dark");
-
-        // Save theme
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-
-        // Sync UI on ALL toggles
-        syncAllToggles(isDark);
-    });
-});
 
 
 
@@ -87,7 +125,12 @@ btn_containers.forEach(container => {
         form_cont.classList.add("hidden");
     }
 
+    window.openExpenseForm = openExpenseForm;
+    window.closeExpenseForm = closeExpenseForm;
+
     spend?.addEventListener("click", openExpenseForm);
     exit?.addEventListener("click", closeExpenseForm);
 
 });
+
+

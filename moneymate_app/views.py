@@ -37,9 +37,12 @@ def home(request):
     return render(request, "index.html", {
         "wallet": wallet,
         "expenses": expenses,
-        "incomes": incomes,       # <-- IMPORTANT
+        "incomes": incomes,
         "total_spent": total_spent,
+        "available_balance": wallet.balance,   # <-- MOST IMPORTANT
     })
+
+
 
 
 
@@ -155,11 +158,12 @@ def add_expense(request):
         category = request.POST.get('category')
         date = request.POST.get('date')
 
-        # ---------------------- Validation ----------------------
+        # ----------------- Required Fields Check -----------------
         if not title or not amount or not date:
             messages.error(request, "Please fill all required fields.")
             return redirect("home")
 
+        # ----------------- Amount Validation -----------------
         try:
             amount = int(amount)
             if amount <= 0:
@@ -169,22 +173,24 @@ def add_expense(request):
             messages.error(request, "Invalid amount entered.")
             return redirect("home")
 
-        # ---------------------- Wallet Logic ----------------------
+        # ----------------- Fetch or Create Wallet -----------------
         wallet, created = Wallet.objects.get_or_create(user=request.user)
 
+        # ----------------- Insufficient Balance Check -----------------
         if wallet.balance < amount:
-            messages.error(request, "Insufficient wallet balance!")
+            messages.error(request, f"Insufficient Balance! Your available balance is ₹{wallet.balance}.")
             return redirect("home")
 
+        # ----------------- Deduct & Save Wallet -----------------
         wallet.balance -= amount
         wallet.save()
 
-        # ---------------------- Save Expense ----------------------
+        # ----------------- Save Expense -----------------
         Expense.objects.create(
             user=request.user,
             title=title,
             amount=amount,
-            category=category,
+            category=category if category else "Other",
             date=date
         )
 

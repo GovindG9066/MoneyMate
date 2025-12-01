@@ -3,6 +3,13 @@
     transition: all 0.2s ease-in ease-out ;
 }
 
+ .move-right {
+        transform: translateX(28px);
+    }
+.move-left {
+    transform: translateX(0px);
+}
+
    .slide-btn {
         position: relative;
         overflow: hidden;
